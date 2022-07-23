@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TourisMore</string>
+    <string name="btn_continue">Get started</string>
+    <string name="text_bottom">Путешествуй вместе с TourisMore</string>
+</resources>

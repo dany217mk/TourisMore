@@ -1,0 +1,43 @@
+<androidx.cardview.widget.CardView app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="15dp"
+        android:background="@color/white"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editNumber"
+            android:layout_width="match_parent"
+            android:hint="Введите свой номер телефона"
+            android:padding="10dp"
+            android:ems="1"
+            android:inputType="phone"
+            android:textStyle="bold|normal"
+            android:textColor="#1C1C1C"
+            android:background="@drawable/input_shape"
+            android:textSize="20sp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/continueBtn"
+            android:text="Continue"
+            android:textStyle="bold|normal"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_ripple_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

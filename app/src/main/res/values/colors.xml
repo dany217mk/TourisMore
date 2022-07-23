@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ripple_reg_effect">#838383</color>
+    <color name="btn_ripple_reg">#D5ECC2</color>
+    <color name="btn_ripple_reg_stroke">#419C45</color>
+    <color name="ripple_auth_effect">#EEEEEE</color>
+    <color name="btn_ripple_auth">#03A9F4</color>
+    <color name="btn_ripple_auth_stroke">#3F51B5</color>
+
+    <color name="main_color">#22577E</color>
+    <color name="add_color">#95D1CC</color>
+    <color name="light_gray">#EEEEEE</color>
+
+    <color name="start_color">#22577E</color>
+    <color name="end_color">#5584AC</color>
+    <color name="tab_color">#95D1CC</color>
+    <color name="title_color">#22577E</color>
+    <color name="desc_color">#656565</color>
+
+</resources>

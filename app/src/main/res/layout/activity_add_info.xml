@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginTop="50dp"
+    android:gravity="center_horizontal"
+    tools:context=".AddInfoActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:id="@+id/imgProfile"
+        android:src="@drawable/upload" />
+    <TextView
+        android:text="Информация профиля"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|normal"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        android:layout_marginTop="19dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="Заполните данные о себе"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|normal"
+        android:textColor="#383839"
+        android:textSize="13sp"
+        android:layout_marginTop="19dp"
+        android:textAlignment="center"/>
+
+    <androidx.cardview.widget.CardView mask:cardUseCompatPadding="true"
+        mask:cardCornerRadius="8dp"
+        mask:cardElevation="10dp"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:background="@color/white"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editName"
+                    mask:met_floatingLabelText="Ваше имя:"
+                    mask:met_floatingLabel="normal"
+                    android:padding="10dp"
+                    mask:met_floatingLabelAnimating="true"
+                    android:hint="Имя:"
+                    mask:met_floatingLabelTextColor="@color/main_color"
+                    android:textStyle="bold|normal"
+                    android:textColor="#1C1C1C"
+                    android:background="@drawable/input_shape"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSurname"
+                mask:met_floatingLabelText="Ваша фамилия:"
+                mask:met_floatingLabel="normal"
+                android:padding="10dp"
+                mask:met_floatingLabelAnimating="true"
+                android:hint="Фамилия:"
+                mask:met_floatingLabelTextColor="@color/main_color"
+                android:textStyle="bold|normal"
+                android:textColor="#1C1C1C"
+                android:background="@drawable/input_shape"
+                android:textSize="20sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#CCC"
+                    android:text="Дата рождения:"/>
+                <br.com.sapereaude.maskedEditText.MaskedEditText
+                    android:id="@+id/editDateNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    mask:allowed_chars="1234567890"
+                    mask:mask="##.##.####"
+                    android:hint="29022001"
+                    android:padding="10dp"
+                    android:ems="1"
+                    android:textStyle="bold|normal"
+                    android:textColor="#1C1C1C"
+                    android:background="@drawable/date_input_shape"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="5dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="#CCC"
+                    android:text="Пол:"/>
+                <RadioGroup
+                    android:id="@+id/radioSex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioMale"
+                        android:layout_width="158dp"
+                        android:layout_height="wrap_content"
+                        android:text="Мужской" />
+
+                    <RadioButton
+                        android:id="@+id/radioFemale"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:text="Женский" />
+                </RadioGroup>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/createProfile"
+                android:text="Создать профиль"
+                android:textStyle="bold|normal"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_ripple_continue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
+</ScrollView>
