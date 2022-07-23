@@ -20,7 +20,7 @@
         android:id="@+id/imgProfile"
         android:src="@drawable/upload" />
     <TextView
-        android:text="Информация профиля"
+        android:text="@string/text_info_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|normal"
@@ -30,7 +30,7 @@
         android:textAlignment="center"/>
 
     <TextView
-        android:text="Заполните данные о себе"
+        android:text="@string/add_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|normal"
@@ -63,7 +63,7 @@
                     mask:met_floatingLabel="normal"
                     android:padding="10dp"
                     mask:met_floatingLabelAnimating="true"
-                    android:hint="Имя:"
+                    android:hint="@string/name_placeholder"
                     mask:met_floatingLabelTextColor="@color/main_color"
                     android:textStyle="bold|normal"
                     android:textColor="#1C1C1C"
@@ -80,7 +80,7 @@
                 mask:met_floatingLabel="normal"
                 android:padding="10dp"
                 mask:met_floatingLabelAnimating="true"
-                android:hint="Фамилия:"
+                android:hint="@string/surname_placeholder"
                 mask:met_floatingLabelTextColor="@color/main_color"
                 android:textStyle="bold|normal"
                 android:textColor="#1C1C1C"
@@ -101,7 +101,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="5dp"
                     android:textColor="#CCC"
-                    android:text="Дата рождения:"/>
+                    android:text="@string/dob_placeholder"/>
                 <br.com.sapereaude.maskedEditText.MaskedEditText
                     android:id="@+id/editDateNumber"
                     android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                     android:textSize="14sp"
                     android:layout_marginLeft="5dp"
                     android:textColor="#CCC"
-                    android:text="Пол:"/>
+                    android:text="@string/gedner_placeholder"/>
                 <RadioGroup
                     android:id="@+id/radioSex"
                     android:layout_width="match_parent"
@@ -143,18 +143,18 @@
                         android:id="@+id/radioMale"
                         android:layout_width="158dp"
                         android:layout_height="wrap_content"
-                        android:text="Мужской" />
+                        android:text="@string/male_radio" />
 
                     <RadioButton
                         android:id="@+id/radioFemale"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:text="Женский" />
+                        android:text="@string/female_radio" />
                 </RadioGroup>
             </LinearLayout>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/createProfile"
-                android:text="Создать профиль"
+                android:text="@string/create_profile"
                 android:textStyle="bold|normal"
                 android:textSize="16sp"
                 android:textColor="@color/white"

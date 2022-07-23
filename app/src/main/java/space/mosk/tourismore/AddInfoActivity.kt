@@ -41,7 +41,7 @@ class AddInfoActivity : AppCompatActivity() {
         dialog = ProgressDialog(this@AddInfoActivity)
 
         dialog!!.setCancelable(false)
-        dialog!!.setMessage("Create profile")
+        dialog!!.setMessage("Создание профиля")
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()

@@ -60,7 +60,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/btn_ripple_auth"
-        android:text="Get Started"
+        android:text="@string/get_started"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

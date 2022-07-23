@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Авторизация"
+        android:text="@string/auth"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="@color/main_color"
@@ -42,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="6dp"
-            android:text="Мы отправим вам "
+            android:text="@string/auth_info_1"
             android:textSize="16sp"
             android:textStyle="normal"
             android:textColor="#656262"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="код"
+            android:text="@string/auth_info_2"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#656262"/>
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="6dp"
-        android:text="по номеру телефона..."
+        android:text="@string/auth_info_3"
         android:textSize="16sp"
         android:textStyle="normal"
         android:textColor="#656262"/>
@@ -98,7 +98,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/continueBtn"
-                android:text="Продолжить"
+                android:text="@string/btn_continue"
                 android:textStyle="bold|normal"
                 android:textSize="16sp"
                 android:textColor="@color/btn_color_continue"

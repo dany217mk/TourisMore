@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">TourisMore</string>
-    <string name="btn_continue">Get started</string>
     <string name="text_bottom">Путешествуй вместе с TourisMore</string>
+    <string name="by_company">by Ruthenia</string>
+    <string name="get_started">Get Started</string>
+    <string name="auth">Авторизация</string>
+    <string name="auth_info_1">Мы отправим вам</string>
+    <string name="auth_info_2">код</string>
+    <string name="auth_info_3">по номеру телефона...</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="code_to_info">Код отправлен на номер: +79217777777</string>
+    <string name="otp_info">Введите код для подтверждения вашего номера телефона</string>
+    <string name="no_code">Мне не пришел код :(</string>
+    <string name="text_info_profile">Информация профиля</string>
+    <string name="add_info">Заполните данные о себе</string>
+    <string name="name_placeholder">Имя:</string>
+    <string name="surname_placeholder">Фамилия:</string>
+    <string name="dob_placeholder">Дата рождения:</string>
+    <string name="gedner_placeholder">Пол:</string>
+    <string name="male_radio">Мужской</string>
+    <string name="female_radio">Женский</string>
+    <string name="create_profile">Создать профиль</string>
 </resources>
