@@ -71,7 +71,7 @@ class CheckCodeActivity : AppCompatActivity() {
                         MotionToast.LONG_DURATION,
                         ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
                         Log.d("danmos", p0.toString())
-                        dialog!!.setMessage("Упсс, возникла небольшая ошибка. Попробуйте позжу..")
+                        dialog!!.setMessage("Упсс, возникла небольшая ошибка. Попробуйте позже..")
                 }
 
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
