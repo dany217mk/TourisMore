@@ -1,0 +1,55 @@
+package space.mosk.tourismore
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+
+class ListAdapter(private val array: List<Way>, val onViewClick: OnViewClickListener) : RecyclerView.Adapter<ListAdapter.ViewHolder>()
+{
+
+    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val name : TextView = itemView.findViewById(R.id.wayName)
+        val desc : TextView = itemView.findViewById(R.id.wayDescription)
+        val img : ImageView = itemView.findViewById(R.id.imgCardHolder)
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.one_path_block, parent, false)
+        return ViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.name.text = array[position].name
+        holder.desc.text = array[position].description
+        holder.img.setImageResource(array[position].img)
+        holder.itemView.setOnClickListener{
+            onViewClick.onItemClick(position)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return array.size
+    }
+}
+
+interface OnViewClickListener {
+    fun onItemClick(pos : Int)
+}
+
+data class Way(val name :String, val description : String, val img : Int, val srcImg : Int)
+
+fun makeSampleWays() : List<Way>{
+    return listOf(
+        Way("Кремль", "Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Также кремль", "Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Еще один", "Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Почти", "Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
+        Way("ААААААА", "ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
+        Way("ббббббббббб", "ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
+    )
+}

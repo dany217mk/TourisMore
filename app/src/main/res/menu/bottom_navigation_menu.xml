@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/paths"
+        android:icon="@drawable/ic_baseline_map"
+        android:title="@string/map" />
+    <item
+        android:id="@+id/news"
+        android:icon="@drawable/ic_baseline_article"
+        android:title="@string/news"/>
+
+    <item
+        android:id="@+id/messages"
+        android:icon="@drawable/ic_baseline_chat_bubble"
+        android:title="@string/messages"/>
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_services"
+        android:title="@string/services"/>
+
+
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_person"
+        android:title="@string/profile"/>
+
+</menu>

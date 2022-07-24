@@ -77,7 +77,7 @@ class CheckCodeActivity : AppCompatActivity() {
                     super.onCodeSent(p0, p1)
                     dialog!!.dismiss()
                     MotionToast.createColorToast(this@CheckCodeActivity,
-                        "Код отправлен успешно ☹️",
+                        "Код отправлен успешно️",
                         "",
                         MotionToastStyle.INFO,
                         MotionToast.GRAVITY_BOTTOM,

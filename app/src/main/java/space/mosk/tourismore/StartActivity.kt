@@ -19,7 +19,7 @@ import java.util.*
 class StartActivity : AppCompatActivity() {
 
     private var screenPager: ViewPager? = null
-    private var viewPagerAdapter: ViewPagerAdapter? = null
+    private var viewPagerAdapter: ViewPagerStartAdapter? = null
     private var tabIntro: TabLayout? = null
     private var btn_next: Button? = null
     private var position: Int = 0
@@ -48,7 +48,7 @@ class StartActivity : AppCompatActivity() {
 
 
         screenPager = findViewById(R.id.sliderViewPager)
-        viewPagerAdapter = ViewPagerAdapter(this, mList)
+        viewPagerAdapter = ViewPagerStartAdapter(this, mList)
         screenPager?.adapter = viewPagerAdapter
 
         tabIntro?.setupWithViewPager(screenPager)
