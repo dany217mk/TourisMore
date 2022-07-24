@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.ar" />
 
     <application
@@ -13,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TourisMore">
-
-        <activity android:name=".SplashActivity" android:exported="true">
+        <activity android:name=".RegActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +27,8 @@
         <activity android:name=".AddInfoActivity" />
         <activity android:name=".CheckCodeActivity" />
         <activity
-            android:name=".StartActivity" android:exported="true">
+            android:name=".StartActivity"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -48,8 +52,9 @@
             android:name=".TryAr"
             android:exported="false" />
 
-        <meta-data android:name="com.google.ar.core" android:value="required" />
-
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
