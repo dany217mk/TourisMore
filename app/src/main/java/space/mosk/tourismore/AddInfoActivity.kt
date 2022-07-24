@@ -1,13 +1,21 @@
 package space.mosk.tourismore
 
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
@@ -18,6 +26,7 @@ import space.mosk.tourismore.databinding.ActivityAddInfoBinding
 import space.mosk.tourismore.models.User
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -28,6 +37,7 @@ class AddInfoActivity : AppCompatActivity() {
     var storage: FirebaseStorage? = null
     var dialog: ProgressDialog?= null
     var selectedImage: Uri?= null
+    var mDateSetListener: DatePickerDialog.OnDateSetListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +47,7 @@ class AddInfoActivity : AppCompatActivity() {
         supportActionBar?.hide()
         binding = ActivityAddInfoBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         dialog = ProgressDialog(this@AddInfoActivity)
 
         dialog!!.setCancelable(false)
@@ -45,12 +55,52 @@ class AddInfoActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
+
+        binding!!.editDateNumber.setOnClickListener{
+            val cal: Calendar= Calendar.getInstance()
+            var year: Int = cal.get(Calendar.YEAR)
+            var month: Int = cal.get(Calendar.MONTH)
+            var day: Int = cal.get(Calendar.DAY_OF_MONTH)
+            val dialogPickerDate: DatePickerDialog = DatePickerDialog(
+                this@AddInfoActivity,
+                R.style.Base_Theme_AppCompat_Light_Dialog,
+                mDateSetListener,
+                2000, 1, 1);
+            dialogPickerDate.setOnShowListener{
+                var btn_ok: Button = dialogPickerDate.getButton(DialogInterface.BUTTON_POSITIVE)
+                var btn_cancel: Button = dialogPickerDate.getButton(DialogInterface.BUTTON_NEGATIVE)
+                btn_ok.setTextColor(resources.getColor(R.color.main_color))
+                btn_cancel.setTextColor(resources.getColor(R.color.main_color))
+                btn_ok.setOnClickListener {
+                    var monthStr: String = dialogPickerDate.datePicker.month.toString()
+                    var dayStr: String = dialogPickerDate.datePicker.dayOfMonth.toString()
+                    if (dialogPickerDate.datePicker.month < 10){
+                        monthStr = "0" + (dialogPickerDate.datePicker.month+1).toString()
+                    }
+                    if (dialogPickerDate.datePicker.dayOfMonth < 10){
+                        dayStr = "0" + dialogPickerDate.datePicker.dayOfMonth.toString()
+                    }
+                    val date: String = dayStr + "." + monthStr + "." + dialogPickerDate.datePicker.year.toString()
+                    binding!!.editDateNumber.text = date
+                    dialogPickerDate.dismiss()
+                }
+            }
+            dialogPickerDate.show()
+        }
+
+
+
+
+
+
+
         binding!!.imgProfile.setOnClickListener{
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
             intent.type = "image/*"
             startActivityForResult(intent, 45)
         }
+
 
         binding!!.createProfile.setOnClickListener{
             val name: String = binding!!.editName.text.toString()
@@ -67,7 +117,7 @@ class AddInfoActivity : AppCompatActivity() {
             } else{
                 binding!!.editSurname.setError("Фамилия не соответствует формату")
             }
-            if (date_of_birth.isNotEmpty() && checkdate(date_of_birth)){
+            if (date_of_birth != resources.getString(R.string.select_date)){
                 counter++
             } else{
                 binding!!.editDateNumber.setError("Дата не соответствует формату")
@@ -130,10 +180,8 @@ class AddInfoActivity : AppCompatActivity() {
 
     }
 
-    private fun checkdate(toString: String): Boolean {
-        // TODO: 24.07.2022 проверка валидности даты (на вход дата в формате: 12.06.2005)
-        return true
-    }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

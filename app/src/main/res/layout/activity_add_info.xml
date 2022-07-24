@@ -95,6 +95,7 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/date_of_birth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -102,22 +103,16 @@
                     android:layout_marginLeft="5dp"
                     android:textColor="#CCC"
                     android:text="@string/dob_placeholder"/>
-                <br.com.sapereaude.maskedEditText.MaskedEditText
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editDateNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date"
-                    mask:allowed_chars="1234567890"
-                    mask:mask="##.##.####"
-                    android:hint="29022001"
-                    android:padding="10dp"
-                    android:ems="1"
-                    android:textStyle="bold|normal"
-                    android:textColor="#1C1C1C"
-                    android:background="@drawable/date_input_shape"
-                    android:textSize="20sp"
-                    android:layout_marginBottom="5dp"
-                    />
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/select_date"/>
+
+
             </LinearLayout>
 
             <LinearLayout

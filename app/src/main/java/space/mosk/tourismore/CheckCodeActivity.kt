@@ -76,6 +76,13 @@ class CheckCodeActivity : AppCompatActivity() {
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
                     super.onCodeSent(p0, p1)
                     dialog!!.dismiss()
+                    MotionToast.createColorToast(this@CheckCodeActivity,
+                        "Код отправлен успешно ☹️",
+                        "",
+                        MotionToastStyle.INFO,
+                        MotionToast.GRAVITY_BOTTOM,
+                        MotionToast.SHORT_DURATION,
+                        ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
                     verificationId = p0
                     val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)

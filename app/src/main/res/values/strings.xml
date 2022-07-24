@@ -20,4 +20,5 @@
     <string name="male_radio">Мужской</string>
     <string name="female_radio">Женский</string>
     <string name="create_profile">Создать профиль</string>
+    <string name="select_date">Select date</string>
 </resources>
