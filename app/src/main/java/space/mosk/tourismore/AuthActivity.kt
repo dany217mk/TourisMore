@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import space.mosk.tourismore.databinding.ActivityAuthBinding
 
+//qiwi
+
 class AuthActivity : AppCompatActivity() {
     private var continueBtn: Button? = null
 
