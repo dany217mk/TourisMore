@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import space.mosk.tourismore.databinding.ActivityCheckCodeBinding
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
@@ -115,9 +119,8 @@ class CheckCodeActivity : AppCompatActivity() {
                                 MotionToastStyle.SUCCESS,
                                 MotionToast.GRAVITY_BOTTOM,
                                 MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
-                            val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
-                            startActivity(intent)
-                            finishAffinity()
+                                check_auth()
+
                         } else{
                             MotionToast.createColorToast(this@CheckCodeActivity,
                                 "Неудачно ☹️",
@@ -138,5 +141,38 @@ class CheckCodeActivity : AppCompatActivity() {
             startActivity(authActivity)
             finish()
         }
+    }
+
+    private fun check_auth() : Boolean{
+            database = FirebaseDatabase.getInstance()
+            database!!.reference
+                .child("users")
+                .orderByChild("uid")
+                .equalTo(auth!!.uid)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var boolAuth: Boolean = false
+                        snapshot.children.forEach {
+                            boolAuth = true
+                            val intent: Intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+                            finishAffinity()
+                        }
+                        if (!boolAuth){
+                            val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
+                            startActivity(intent)
+                            finishAffinity()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d("danmos", error.message.toString())
+                        val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
+                        startActivity(intent)
+                        finishAffinity()
+                    }
+
+                })
+        return false
     }
 }
