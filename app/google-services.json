@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "278165907098",
+    "firebase_url": "https://tourismore-db0ac-default-rtdb.firebaseio.com",
     "project_id": "tourismore-db0ac",
     "storage_bucket": "tourismore-db0ac.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "278165907098-3bnepj4nllud3mg38n0qjge2t7rf7lai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "space.mosk.tourismore",
+            "certificate_hash": "cc9f2fc90933394ae071dc0b5cbb294b5963bf5d"
+          }
+        },
         {
           "client_id": "278165907098-bkm970jqr6ajj1uovj48qapaphffihot.apps.googleusercontent.com",
           "client_type": 3
