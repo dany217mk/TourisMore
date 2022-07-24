@@ -31,4 +31,5 @@
     <string name="profile">Profile</string>
     <string name="description">Подробное описание</string>
     <string name="messages">Сообщения</string>
+    <string name="reg">Регистрация</string>
 </resources>
