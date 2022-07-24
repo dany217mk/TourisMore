@@ -65,12 +65,13 @@ class CheckCodeActivity : AppCompatActivity() {
                     Log.d("error", p0.toString())
                     MotionToast.createColorToast(this@CheckCodeActivity,
                         "Попробуйте позже ☹️",
-                        "На вашем аккаунте замечена подозрительная актинвость",
+                        "Сервер временно недоступен",
                         MotionToastStyle.ERROR,
                         MotionToast.GRAVITY_BOTTOM,
                         MotionToast.LONG_DURATION,
                         ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
-                        dialog!!.setMessage("Отправляем код. Подождите..")
+                        Log.d("danmos", p0.toString())
+                        dialog!!.setMessage("Упсс, возникла небольшая ошибка. Попробуйте позжу..")
                 }
 
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {

@@ -1,45 +1,27 @@
 {
   "project_info": {
-    "project_number": "278165907098",
-    "firebase_url": "https://tourismore-db0ac-default-rtdb.firebaseio.com",
-    "project_id": "tourismore-db0ac",
-    "storage_bucket": "tourismore-db0ac.appspot.com"
+    "project_number": "824584317352",
+    "firebase_url": "https://tourismore-13be3-default-rtdb.firebaseio.com",
+    "project_id": "tourismore-13be3",
+    "storage_bucket": "tourismore-13be3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:278165907098:android:a9f7104164225442602123",
+        "mobilesdk_app_id": "1:824584317352:android:c550cb228ff3f7cfae559d",
         "android_client_info": {
           "package_name": "space.mosk.tourismore"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "278165907098-3bnepj4nllud3mg38n0qjge2t7rf7lai.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "space.mosk.tourismore",
-            "certificate_hash": "cc9f2fc90933394ae071dc0b5cbb294b5963bf5d"
-          }
-        },
-        {
-          "client_id": "278165907098-bkm970jqr6ajj1uovj48qapaphffihot.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAaZQxq_1plYBIWjmM71PGwlojCbgdz9D4"
+          "current_key": "AIzaSyBZ0YkJ5D9JR_28M5Pwq8fGwrBhdlExazU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278165907098-bkm970jqr6ajj1uovj48qapaphffihot.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
