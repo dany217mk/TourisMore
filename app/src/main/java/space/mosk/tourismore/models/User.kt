@@ -16,4 +16,6 @@ class User {
         this.phoneNumber = phoneNumber
         this.profileImage = profileImage
     }
+    fun <T> getUser( hash : HashMap<String, T>): User = User(hash.get("uid") as String, hash.get("name") as String, hash.get("surname") as String,hash.get("date_of_birth") as String,
+            hash.get("gender") as String, hash.get("phoneNumber") as String, hash.get("profileImage") as String)
 }
