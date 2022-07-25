@@ -13,16 +13,7 @@
           "package_name": "space.mosk.tourismore"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "824584317352-ruap5rg8g9vc5m2nnm8bb153g6ne2s2t.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "space.mosk.tourismore",
-            "certificate_hash": "88d742b9fe4a5baa69efdda6d20ff84f194ec3e1"
-          }
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyC28jbaz_bCr5yhOP-v8zNiFguglofKs2w"
