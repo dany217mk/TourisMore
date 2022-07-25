@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TryAr"
+            android:name=".PanoramaFragment"
             android:exported="false" />
 
         <meta-data
