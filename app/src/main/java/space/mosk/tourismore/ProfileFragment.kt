@@ -12,18 +12,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import space.mosk.tourismore.models.User
-import java.util.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 
 class ProfileFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
-
     private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +36,14 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
+
         var ref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().currentUser!!.uid)
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                user = snapshot.getValue() as User?
+                user = snapshot.getValue(User::class.java)
+                view.findViewById<TextView>(R.id.name).text = user?.name
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -50,15 +51,6 @@ class ProfileFragment : Fragment() {
             }
 
         })
-
-
-        val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
-
-        Log.d("danmos", user.toString())
-
-        view.findViewById<TextView>(R.id.name).text = user?.name + " " + user?.surname
-
-
         return view
     }
 
