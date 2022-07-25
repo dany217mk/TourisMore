@@ -1,5 +1,4 @@
 package space.mosk.tourismore.models
-
 class User {
     var uid:String? = null
     var name:String? = null

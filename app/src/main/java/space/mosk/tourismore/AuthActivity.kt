@@ -49,7 +49,7 @@ class AuthActivity : AppCompatActivity() {
 
             override fun afterTextChanged(p0: Editable?) {
                 binding!!.continueBtn.isEnabled = binding!!.editNumber.text.toString().isNotEmpty()
-                        && binding!!.editNumber.text.toString() != "+7(123)456-78-90"
+                        && binding!!.editNumber.text.toString() != "+7(123)456-78-90" && binding!!.editNumber.text.toString().length == 16
             }
 
         })
