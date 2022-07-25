@@ -1,5 +1,4 @@
 package space.mosk.tourismore.models
-
 class User {
     var uid:String? = null
     var name:String? = null
@@ -8,7 +7,14 @@ class User {
     var gender:String? = null
     var phoneNumber:String?= null
     var profileImage:String?= null
-    constructor(uid: String?, name: String?, surname: String?, date_of_birth: String?, gender: String?, phoneNumber: String?, profileImage: String?){
+    constructor(){}
+    constructor(uid: String?,
+                name: String?,
+                surname: String?,
+                date_of_birth: String?,
+                gender: String?,
+                phoneNumber: String?,
+                profileImage: String?){
         this.uid = uid
         this.name = name
         this.surname = surname
