@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import space.mosk.tourismore.databinding.ActivityAuthBinding
 
-//qiwi [SmsRetrieverHelper] SMS verification code request failed: unknown status code: 17499 Requests from this Android client application space.mosk.tourismore are blocked.
+//qiwi
 
 class AuthActivity : AppCompatActivity() {
     private var continueBtn: Button? = null
