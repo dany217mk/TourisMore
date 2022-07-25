@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TourisMore">
-        <activity android:name=".RegActivity"></activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -49,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TryAr"
+            android:name=".PanoramaFragment"
             android:exported="false" />
 
         <meta-data
@@ -58,6 +57,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
