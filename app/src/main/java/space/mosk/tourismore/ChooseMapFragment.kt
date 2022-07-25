@@ -62,7 +62,7 @@ class ChooseMapFragment : Fragment() {
 
         goBtn.setOnClickListener{
             if(swithcer.isChecked){
-                val intent = Intent(context, TryAr::class.java)
+                val intent = Intent(context, PanoramaFragment::class.java)
                 startActivity(intent)
             }
         }
