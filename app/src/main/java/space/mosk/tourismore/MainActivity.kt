@@ -12,8 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(){
     private lateinit var bottomNavigationBar : BottomNavigationView
-    private lateinit var fragmentManager : FragmentManager
-    private var currentFragment : Fragment = PathsFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity(){
                 else -> false
             }
         }
-        bottomNavigationBar.setOnItemReselectedListener({})
+        bottomNavigationBar.setOnItemReselectedListener{}
         /*
         https://www.meghandev.io/post/android-bottomnavigationview-example-tutorial
         https://blog.mindorks.com/android-bottom-navigationview-in-kotlin

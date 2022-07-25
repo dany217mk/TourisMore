@@ -3,11 +3,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgappmain"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ServicesFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/service"
+            android:textSize="27sp"
+            android:fontFamily="@font/comfortaa_variablefont_wght"
+            />
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:columnOrderPreserved="false"
+            android:alignmentMode="alignMargins"
+            >
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="7dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="110dp"
+                        android:layout_gravity="center"
+                        android:layout_height="110dp"
+                        android:src="@drawable/service1"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Service 1"
+                        android:fontFamily="@font/comfortaa_variablefont_wght"
+                        android:textSize="23sp"/>
+                </LinearLayout>
 
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="7dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="110dp"
+                        android:layout_gravity="center"
+                        android:layout_height="110dp"
+                        android:src="@drawable/service2"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Service 2"
+                        android:fontFamily="@font/comfortaa_variablefont_wght"
+                        android:textSize="23sp"/>
+                </LinearLayout>
 
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="7dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="110dp"
+                        android:layout_gravity="center"
+                        android:layout_height="110dp"
+                        android:src="@drawable/service3"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Service 1"
+                        android:fontFamily="@font/comfortaa_variablefont_wght"
+                        android:textSize="23sp"/>
+                </LinearLayout>
 
+            </com.google.android.material.card.MaterialCardView>
+        </GridLayout>
 
+    </LinearLayout>
 
 </ScrollView>

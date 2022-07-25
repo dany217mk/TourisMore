@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/drawable/ic_baseline_services.xml" value="0.3045" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_choose_map.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_profile.xml" value="0.30104166666666665" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_service_two.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_services.xml" value="0.33" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_sirvice_one.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/one_path_block.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
