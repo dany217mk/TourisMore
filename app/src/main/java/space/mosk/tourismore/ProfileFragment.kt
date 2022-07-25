@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -50,8 +51,8 @@ class ProfileFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(User::class.java)
                 nameSurname.text = user?.name + " " + user?.surname
+                Toast.makeText(context, user?.name + " " + user?.surname, Toast.LENGTH_LONG).show()
                 Glide.with(context!!).load(user?.profileImage).into(profilePic)
-                view.findViewById<TextView>(R.id.name).text = user?.name
             }
 
             override fun onCancelled(error: DatabaseError) {
