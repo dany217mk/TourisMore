@@ -2,7 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/date_input_shape"
+    android:layout_margin="15dp"
+    android:padding="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <ImageView
         android:id="@+id/user_photo_image"
@@ -71,6 +75,7 @@
         app:layout_constraintTop_toBottomOf="@id/like_text"
         app:layout_constraintStart_toStartOf="@id/like_text"
         android:text="Загрузка..."/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

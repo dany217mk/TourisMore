@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
@@ -137,8 +138,9 @@ class AddInfoActivity : AppCompatActivity() {
                     .child(auth!!.uid!!)
                 reference.putFile(selectedImage!!).addOnCompleteListener { task->
                     if (task.isSuccessful){
-                        reference.downloadUrl.addOnCompleteListener {uri->
-                            val imageUrl = uri.toString()
+                        reference.downloadUrl.addOnCompleteListener {
+                            val imageUrl = it.result.toString()
+                            Log.d("danmos", imageUrl)
                             val uid = auth!!.uid
                             val phone = auth!!.currentUser!!.phoneNumber
                             val user = User(uid, name, surname, date_of_birth, gender, phone, imageUrl)
