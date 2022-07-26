@@ -37,6 +37,7 @@ android {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
 
@@ -75,5 +76,6 @@ dependencies {
     implementation'com.devlomi:circularstatusview:1.0.1'
     implementation'com.github.OMARIHAMZA:StoryView:1.0.2-alpha'
     implementation'com.github.sharish:ShimmerRecyclerView:v1.3'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
 }
