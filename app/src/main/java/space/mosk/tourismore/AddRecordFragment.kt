@@ -55,6 +55,7 @@ class AddRecordFragment : Fragment() {
     private var imageUri: Uri? = null
     private val REQUEST_CODE = 1
     private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+    private  var imageDownloadUrl: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,11 +85,9 @@ class AddRecordFragment : Fragment() {
             if (imageUri != null){
                 dialog!!.show()
                 mStorage.child("users").child(mAuth.currentUser!!.uid).child("images").child(
-                    imageUri!!.lastPathSegment.toString()).putFile(imageUri!!).addOnCompleteListener {task ->
-                        if (task.isSuccessful){
-                            val imageDownloadUrl = mStorage.child("users")
-                                .child(mAuth.currentUser!!.uid).child("images")
-                                .child(imageUri!!.lastPathSegment.toString()).downloadUrl.toString()
+                    imageUri!!.lastPathSegment.toString()).putFile(imageUri!!).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            imageDownloadUrl = imageUri.toString()
                             mDatabase.child("images")
                                 .child(mAuth.currentUser!!.uid)
                                 .push()
@@ -101,7 +100,7 @@ class AddRecordFragment : Fragment() {
                                                     uid = mAuth.currentUser!!.uid,
                                                     name = mUser.name.toString(),
                                                     surname = mUser.surname.toString(),
-                                                    image = imageDownloadUrl,
+                                                    image = imageDownloadUrl.toString(),
                                                     caption = view.findViewById<EditText>(R.id.title_input).text.toString(),
                                                     profileImage = mUser.profileImage.toString()
                                                 )).addOnCompleteListener{

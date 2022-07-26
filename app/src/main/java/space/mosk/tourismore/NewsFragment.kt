@@ -42,11 +42,12 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
+        val feed_recycler = view.findViewById<RecyclerView>(R.id.feed_recycler)
         mDatabase.child("feed-posts").child(mAuth.currentUser!!.uid).addValueEventListener(
             ValueEventListenerAdapter{
                 val posts = it.children.map { it.getValue(FeedPost::class.java) }
-                view.findViewById<RecyclerView>(R.id.feed_recycler).adapter = FeedAdapter(posts as List<FeedPost>)
-                view.findViewById<RecyclerView>(R.id.feed_recycler).layoutManager = LinearLayoutManager(requireContext())
+                feed_recycler.adapter = FeedAdapter(posts as List<FeedPost>)
+                feed_recycler.layoutManager = LinearLayoutManager(view.context)
         })
         return view
     }
