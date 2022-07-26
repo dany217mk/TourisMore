@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.google.android.material.button.MaterialButton
+import space.mosk.tourismore.R
+import space.mosk.tourismore.ShareBetweenFragments
 
 
 private const val ARG_PARAM1 = "param1"

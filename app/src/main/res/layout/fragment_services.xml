@@ -4,20 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bgappmain"
     tools:context=".ServicesFragment">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
         <TextView
-            android:layout_marginStart="15dp"
-            android:layout_width="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="@string/service"
-            android:textSize="27sp"
-            android:fontFamily="@font/comfortaa_variablefont_wght"
-            />
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfortaa_variablefont_wght" />
         <GridLayout
             android:id="@+id/gridLayout"
             android:layout_marginTop="10dp"
@@ -26,8 +28,8 @@
             android:columnCount="2"
             android:rowCount="3"
             android:columnOrderPreserved="false"
-            android:alignmentMode="alignMargins"
-            >
+            android:paddingTop="10dp"
+            android:alignmentMode="alignMargins">
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,13 +46,13 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/service1"/>
+                        android:src="@drawable/freinds"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Service 1"
+                        android:text="Друзья"
                         android:fontFamily="@font/comfortaa_variablefont_wght"
                         android:textSize="23sp"/>
                 </LinearLayout>
@@ -72,13 +74,13 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/service2"/>
+                        android:src="@drawable/plus"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Service 2"
+                        android:text="Добавить"
                         android:fontFamily="@font/comfortaa_variablefont_wght"
                         android:textSize="23sp"/>
                 </LinearLayout>
@@ -100,13 +102,70 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/service3"/>
+                        android:src="@drawable/top"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Service 1"
+                        android:text="Топ мест"
+                        android:fontFamily="@font/comfortaa_variablefont_wght"
+                        android:textSize="23sp"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="7dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="110dp"
+                        android:layout_gravity="center"
+                        android:layout_height="110dp"
+                        android:src="@drawable/ratings"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Рейтинг"
+                        android:fontFamily="@font/comfortaa_variablefont_wght"
+                        android:textSize="23sp"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="7dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="110dp"
+                        android:layout_gravity="center"
+                        android:layout_height="110dp"
+                        android:src="@drawable/step"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Шагомер"
                         android:fontFamily="@font/comfortaa_variablefont_wght"
                         android:textSize="23sp"/>
                 </LinearLayout>

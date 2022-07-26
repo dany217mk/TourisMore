@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import space.mosk.tourismore.R
 import space.mosk.tourismore.models.User
 
 private const val ARG_PARAM1 = "param1"
@@ -45,6 +46,8 @@ class ProfileFragment : Fragment() {
                 user = snapshot.getValue(User::class.java)
                 view.findViewById<TextView>(R.id.name).text = user?.name
             }
+
+
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")

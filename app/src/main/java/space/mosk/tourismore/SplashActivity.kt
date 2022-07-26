@@ -13,6 +13,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import space.mosk.tourismore.AddInfoActivity
+import space.mosk.tourismore.MainActivity
 import space.mosk.tourismore.databinding.ActivitySplashBinding
 
 private var binding: ActivitySplashBinding? = null

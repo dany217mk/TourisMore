@@ -1,4 +1,4 @@
-package com.example.myapplication
+package space.mosk.tourismore
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

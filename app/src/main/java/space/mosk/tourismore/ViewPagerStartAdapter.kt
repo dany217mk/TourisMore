@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
+import space.mosk.tourismore.R
+import space.mosk.tourismore.SliderStartItem
 
 class ViewPagerStartAdapter constructor(val mContext: Context, val mListScreen: List<SliderStartItem>): PagerAdapter() {
     override fun getCount(): Int {

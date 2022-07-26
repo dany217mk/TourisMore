@@ -1,18 +1,14 @@
 package space.mosk.tourismore
 
 import `in`.aabhasjindal.otptextview.OTPListener
-import `in`.aabhasjindal.otptextview.OtpTextView
 import android.app.ProgressDialog
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.FirebaseException
@@ -73,7 +69,7 @@ class CheckCodeActivity : AppCompatActivity() {
                         MotionToastStyle.ERROR,
                         MotionToast.GRAVITY_BOTTOM,
                         MotionToast.LONG_DURATION,
-                        ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
+                        ResourcesCompat.getFont(applicationContext, R.font.helvetica_regular))
                         Log.d("danmos", p0.toString())
                         dialog!!.setMessage("Упсс, возникла небольшая ошибка. Попробуйте позже..")
                 }
@@ -87,7 +83,7 @@ class CheckCodeActivity : AppCompatActivity() {
                         MotionToastStyle.INFO,
                         MotionToast.GRAVITY_BOTTOM,
                         MotionToast.SHORT_DURATION,
-                        ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
+                        ResourcesCompat.getFont(applicationContext, R.font.helvetica_regular))
                     verificationId = p0
                     val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
@@ -118,7 +114,9 @@ class CheckCodeActivity : AppCompatActivity() {
                                 "Код корректен!",
                                 MotionToastStyle.SUCCESS,
                                 MotionToast.GRAVITY_BOTTOM,
-                                MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
+                                MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,
+                                    R.font.helvetica_regular
+                                ))
                                 check_auth()
 
                         } else{
@@ -128,7 +126,9 @@ class CheckCodeActivity : AppCompatActivity() {
                                 MotionToastStyle.ERROR,
                                 MotionToast.GRAVITY_BOTTOM,
                                 MotionToast.LONG_DURATION,
-                                ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
+                                ResourcesCompat.getFont(applicationContext,
+                                    R.font.helvetica_regular
+                                ))
                             binding!!.otpView.showError()
                         }
 

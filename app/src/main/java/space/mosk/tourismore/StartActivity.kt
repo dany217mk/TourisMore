@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import space.mosk.tourismore.R
+import space.mosk.tourismore.SliderStartItem
+import space.mosk.tourismore.ViewPagerStartAdapter
 import java.util.*
 
 class StartActivity : AppCompatActivity() {

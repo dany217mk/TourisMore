@@ -10,6 +10,9 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.switchmaterial.SwitchMaterial
+import space.mosk.tourismore.PanoramaFragment
+import space.mosk.tourismore.R
+import space.mosk.tourismore.makeSampleWays
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"

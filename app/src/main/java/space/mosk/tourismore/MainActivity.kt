@@ -1,14 +1,10 @@
 package space.mosk.tourismore
 
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import space.mosk.tourismore.*
 
 class MainActivity : AppCompatActivity(){
     private lateinit var bottomNavigationBar : BottomNavigationView

@@ -4,18 +4,12 @@ import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.RadioButton
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
@@ -26,7 +20,6 @@ import space.mosk.tourismore.databinding.ActivityAddInfoBinding
 import space.mosk.tourismore.models.User
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -132,7 +125,9 @@ class AddInfoActivity : AppCompatActivity() {
                     "Неверно заполнены поля!",
                     MotionToastStyle.ERROR,
                     MotionToast.GRAVITY_BOTTOM,
-                    MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,R.font.helvetica_regular))
+                    MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,
+                        R.font.helvetica_regular
+                    ))
                 return@setOnClickListener
             }
             val gender: String = findViewById<RadioButton>(selectedId).text.toString()
