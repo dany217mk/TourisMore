@@ -50,7 +50,15 @@ class ServicesFragment : Fragment(){
                         loadFragment(AddRecordFragment())
                         model.sendServiceName("Поделиться записью")
                     }
-
+                    2 ->{
+                        loadFragment(TopPlacesFragment())
+                    }
+                    3->{
+                        loadFragment(RatingFragment())
+                    }
+                    4->{
+                        loadFragment(PedometerFragment())
+                    }
                 }
             }
         }
