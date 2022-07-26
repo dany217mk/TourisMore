@@ -43,8 +43,8 @@ class ServicesFragment : Fragment(){
             container.setOnClickListener {
                 when(i){
                         0 -> {
-                        loadFragment(SirviceOneFragment())
-                        model.sendServiceName("Service 1")
+                        loadFragment(FriendsFragment())
+                        model.sendServiceName("Пользователи")
                     }
                     1 -> {
                         loadFragment(AddRecordFragment())

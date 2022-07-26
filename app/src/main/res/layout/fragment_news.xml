@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgappmain"
     tools:context=".NewsFragment">
 
     <TextView
@@ -15,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Новости"
+        android:text="Записи"
         android:textSize="24sp"
-        android:textColor="@color/white"
+        android:textColor="@color/main_color"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/comfortaa_variablefont_wght"
         tools:ignore="MissingConstraints" />

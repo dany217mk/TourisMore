@@ -9,17 +9,16 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.button.MaterialButton
-import space.mosk.tourismore.R
-import space.mosk.tourismore.ShareBetweenFragments
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class SirviceOneFragment : Fragment() {
+class FriendsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
     private lateinit var srvsName : TextView
     private lateinit var backButton : MaterialButton
 
@@ -37,7 +36,7 @@ class SirviceOneFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_sirvice_one, container, false)
+        return inflater.inflate(R.layout.fragment_friends, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +59,7 @@ class SirviceOneFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SirviceOneFragment().apply {
+            FriendsFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

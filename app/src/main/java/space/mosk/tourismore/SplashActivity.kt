@@ -1,13 +1,17 @@
 package space.mosk.tourismore
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -16,6 +20,8 @@ import com.google.firebase.database.ValueEventListener
 import space.mosk.tourismore.AddInfoActivity
 import space.mosk.tourismore.MainActivity
 import space.mosk.tourismore.databinding.ActivitySplashBinding
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 private var binding: ActivitySplashBinding? = null
 var database: FirebaseDatabase?= null
@@ -31,6 +37,18 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         auth = FirebaseAuth.getInstance()
+
+        if (!isNetworkAvailable(applicationContext)){
+            MotionToast.createColorToast(this@SplashActivity,
+                "Ошибка",
+                "Нет подключения к интернету :(",
+                MotionToastStyle.ERROR,
+                MotionToast.GRAVITY_BOTTOM,
+                MotionToast.LONG_DURATION, ResourcesCompat.getFont(applicationContext,
+                    R.font.helvetica_regular
+                ))
+        }
+
 
             if (auth!!.currentUser != null){
                 database = FirebaseDatabase.getInstance()
@@ -78,5 +96,11 @@ class SplashActivity : AppCompatActivity() {
     private fun restorePrefData(): Boolean {
         var pref: SharedPreferences = applicationContext.getSharedPreferences("myPrefs", MODE_PRIVATE)
         return pref.getBoolean("isIntroOpened", false)
+    }
+    fun isNetworkAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetworkInfo: NetworkInfo? = null
+        activeNetworkInfo = cm.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 }
