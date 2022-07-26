@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -45,6 +46,7 @@ class AddRecordFragment : Fragment() {
     private lateinit var imageView: ImageView
     private lateinit var mUser: User
     private lateinit var model : ShareBetweenFragments
+    private lateinit var bottomNavView : BottomNavigationView
 
     var dialog: ProgressDialog?= null
 
@@ -72,6 +74,7 @@ class AddRecordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_add_record, container, false)
+
         imageView = view.findViewById(R.id.post_image)
         dialog = ProgressDialog(view.context)
         dialog!!.setMessage("Выкладываем запись")
@@ -108,6 +111,7 @@ class AddRecordFragment : Fragment() {
                                                         model = ViewModelProvider(requireActivity()).get(
                                                             ShareBetweenFragments::class.java)
                                                         loadFragment(ProfileFragment())
+                                                        bottomNavView.selectedItemId = R.id.profile
                                                         dialog!!.dismiss()
                                                     }
                                                 }
@@ -128,19 +132,17 @@ class AddRecordFragment : Fragment() {
         }
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         srvsName = view.findViewById(R.id.srvsName2)
         backButton = view.findViewById(R.id.backBtn2)
+        bottomNavView = requireActivity().findViewById(R.id.navigationView)
         backButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
                 .replace(R.id.container, ServicesFragment())
                 .commit()
         }
-
 
     }
     private fun loadFragment(fragment: Fragment){
