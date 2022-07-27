@@ -6,6 +6,7 @@ data class User (
     @Exclude var uid:String? = "",
     var name:String? = "",
     var surname:String? = "",
+    var fullname:String? = "",
     var date_of_birth:String? = "",
     var gender:String? = "",
     var phoneNumber:String?= "",

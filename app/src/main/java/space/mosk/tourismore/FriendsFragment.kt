@@ -2,11 +2,15 @@ package space.mosk.tourismore
 
 import android.app.backup.BackupManager.dataChanged
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.text.method.TextKeyListener.clear
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -15,8 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import space.mosk.tourismore.models.User
@@ -62,6 +65,42 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
         val friends_recycler = view.findViewById<RecyclerView>(R.id.friends_recycler)
         friends_recycler.adapter = mAdapter
         friends_recycler.layoutManager = LinearLayoutManager(view.context)
+        getAllUsers(uid)
+
+
+        view.findViewById<EditText>(R.id.search_users).addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0.toString().isNotEmpty()){
+                    val query = mDatabase
+                        .child("users")
+                        .orderByChild("surname")
+                        .startAt(p0.toString())
+                        .endAt(p0.toString() + "\uf8ff")
+                    query.addValueEventListener(ValueEventListenerAdapter{ dataSnapshot ->
+                        mUsers = emptyList()
+                        for (snapshot in dataSnapshot.children){
+                            val user = snapshot.getValue(User::class.java)
+                            if (user != null){
+                                mUsers = mUsers + user
+                            }
+                        }
+                        mAdapter.update(mUsers, mUser.follows)
+                    })
+                } else{
+                    getAllUsers(mAuth.currentUser!!.uid)
+                }
+            }
+
+        })
+
+        return view
+    }
+
+    private fun getAllUsers(uid: String) {
         mDatabase.child("users").addValueEventListener(ValueEventListenerAdapter{
             val allUsers = it.children.map { it.getValue(User::class.java)!!.copy(uid = it.key) }
             allUsers.partition { it.uid == uid }
@@ -72,7 +111,6 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
             mAdapter.update(mUsers, mUser.follows)
 
         })
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

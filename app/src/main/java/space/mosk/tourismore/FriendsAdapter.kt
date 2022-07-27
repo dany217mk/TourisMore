@@ -33,6 +33,8 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
         val user = mUsers[position]
         if (user.profileImage != "No Image"){
             Glide.with(holder.view).load(user.profileImage).centerCrop().into(holder.view.findViewById(R.id.profile_img))
+        } else{
+            Glide.with(holder.view).load(R.drawable.profile).fallback(R.drawable.profile).centerCrop().into(holder.view.findViewById(R.id.profile_img))
         }
         holder.view.findViewById<TextView>(R.id.username_text).text = user.name + " " + user.surname
         holder.view.findViewById<Button>(R.id.follow_btn).setOnClickListener {
