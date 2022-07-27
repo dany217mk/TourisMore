@@ -77,7 +77,7 @@ class AddRecordFragment : Fragment() {
 
         imageView = view.findViewById(R.id.post_image)
         dialog = ProgressDialog(view.context)
-        dialog!!.setMessage("Выкладываем запись")
+        dialog!!.setMessage("Запись публикуется...")
         dialog!!.setCancelable(false)
         mDatabase.child("users").child(mAuth.currentUser!!.uid).addValueEventListener(
             ValueEventListenerAdapter{
@@ -87,36 +87,41 @@ class AddRecordFragment : Fragment() {
         view.findViewById<Button>(R.id.shareBtn).setOnClickListener {
             if (imageUri != null){
                 dialog!!.show()
+                val reference = mStorage.child("users").child(mAuth.currentUser!!.uid).child("images").child(
+                    imageUri!!.lastPathSegment.toString())
                 mStorage.child("users").child(mAuth.currentUser!!.uid).child("images").child(
                     imageUri!!.lastPathSegment.toString()).putFile(imageUri!!).addOnCompleteListener {
                         if (it.isSuccessful){
-                            imageDownloadUrl = imageUri.toString()
-                            mDatabase.child("images")
-                                .child(mAuth.currentUser!!.uid)
-                                .push()
-                                .setValue(imageDownloadUrl)
-                                .addOnCompleteListener{
-                                        if (it.isSuccessful){
-                                            mDatabase.child("feed-posts")
-                                                .child(mAuth.currentUser!!.uid)
-                                                .push().setValue(FeedPost(
-                                                    uid = mAuth.currentUser!!.uid,
-                                                    name = mUser.name.toString(),
-                                                    surname = mUser.surname.toString(),
-                                                    image = imageDownloadUrl.toString(),
-                                                    caption = view.findViewById<EditText>(R.id.title_input).text.toString(),
-                                                    profileImage = mUser.profileImage.toString()
-                                                )).addOnCompleteListener{
-                                                    if (it.isSuccessful){
-                                                        model = ViewModelProvider(requireActivity()).get(
-                                                            ShareBetweenFragments::class.java)
-                                                        loadFragment(ProfileFragment())
-                                                        bottomNavView.selectedItemId = R.id.profile
-                                                        dialog!!.dismiss()
-                                                    }
-                                                }
-                                        }
-                                }
+                            imageDownloadUrl = reference.downloadUrl.toString()
+                           reference.downloadUrl.addOnCompleteListener{ uri->
+                               imageDownloadUrl = uri.result.toString()
+                               mDatabase.child("images")
+                                   .child(mAuth.currentUser!!.uid)
+                                   .push()
+                                   .setValue(imageDownloadUrl)
+                                   .addOnCompleteListener{
+                                       if (it.isSuccessful){
+                                           mDatabase.child("feed-posts")
+                                               .child(mAuth.currentUser!!.uid)
+                                               .push().setValue(FeedPost(
+                                                   uid = mAuth.currentUser!!.uid,
+                                                   name = mUser.name.toString(),
+                                                   surname = mUser.surname.toString(),
+                                                   image = imageDownloadUrl.toString(),
+                                                   caption = view.findViewById<EditText>(R.id.title_input).text.toString(),
+                                                   profileImage = mUser.profileImage.toString()
+                                               )).addOnCompleteListener{
+                                                   if (it.isSuccessful){
+                                                       model = ViewModelProvider(requireActivity()).get(
+                                                           ShareBetweenFragments::class.java)
+                                                       loadFragment(ProfileFragment())
+                                                       bottomNavView.selectedItemId = R.id.profile
+                                                       dialog!!.dismiss()
+                                                   }
+                                               }
+                                       }
+                                   }
+                           }
                         }
                 }
             }

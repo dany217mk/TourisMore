@@ -13,13 +13,11 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import space.mosk.tourismore.AddInfoActivity
 import space.mosk.tourismore.MainActivity
 import space.mosk.tourismore.databinding.ActivitySplashBinding
+import space.mosk.tourismore.models.User
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 
@@ -50,47 +48,47 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
-            if (auth!!.currentUser != null){
-                database = FirebaseDatabase.getInstance()
-                database!!.reference
-                    .child("users")
-                    .orderByChild("uid")
-                    .equalTo(auth!!.uid)
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            var boolAuth: Boolean = false
-                            snapshot.children.forEach {
-                                boolAuth = true
-                                val intent: Intent = Intent(applicationContext, MainActivity::class.java)
-                                startActivity(intent)
-                                finishAffinity()
-                            }
-                            if (!boolAuth){
-                                val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
-                                startActivity(intent)
-                                finishAffinity()
-                            }
+        if (auth!!.currentUser != null){
+            database = FirebaseDatabase.getInstance()
+            database!!.reference
+                .child("users")
+                .orderByChild("uid")
+                .equalTo(auth!!.uid)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var boolAuth: Boolean = false
+                        snapshot.children.forEach {
+                            boolAuth = true
+                            val intent: Intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+                            finishAffinity()
                         }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            Log.d("danmos", error.message.toString())
+                        if (!boolAuth){
                             val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
                             startActivity(intent)
                             finishAffinity()
                         }
+                    }
 
-                    })
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d("danmos", error.message.toString())
+                        val intent: Intent = Intent(applicationContext, AddInfoActivity::class.java)
+                        startActivity(intent)
+                        finishAffinity()
+                    }
+
+                })
+        } else{
+            if (restorePrefData()){
+                val authActivity: Intent = Intent(applicationContext, AuthActivity::class.java)
+                startActivity(authActivity)
+                finish()
             } else{
-                if (restorePrefData()){
-                    val authActivity: Intent = Intent(applicationContext, AuthActivity::class.java)
-                    startActivity(authActivity)
-                    finish()
-                } else{
-                    val intent: Intent = Intent(applicationContext, StartActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+                val intent: Intent = Intent(applicationContext, StartActivity::class.java)
+                startActivity(intent)
+                finish()
             }
+        }
 
     }
     private fun restorePrefData(): Boolean {

@@ -140,7 +140,6 @@ class AddInfoActivity : AppCompatActivity() {
                     if (task.isSuccessful){
                         reference.downloadUrl.addOnCompleteListener {
                             val imageUrl = it.result.toString()
-                            Log.d("danmos", imageUrl)
                             val uid = auth!!.uid
                             val phone = auth!!.currentUser!!.phoneNumber
                             val user = User(uid, name, surname, date_of_birth, gender, phone, imageUrl)
@@ -185,25 +184,6 @@ class AddInfoActivity : AppCompatActivity() {
 
         if (data != null){
             if (data.data != null){
-                val uri = data.data
-                val storage = FirebaseStorage.getInstance()
-                val time = Date().time
-                val reference = storage.reference
-                    .child("Profile")
-                    .child(time.toString() + "")
-                    reference.putFile(uri!!).addOnCompleteListener { task->
-                        if (task.isSuccessful){
-                            reference.downloadUrl.addOnCompleteListener{ uri->
-                                val filePath =  uri.toString()
-                                val obj = HashMap<String,Any>()
-                                obj["image"] = filePath
-                                database!!.reference
-                                    .child("users")
-                                    .child(FirebaseAuth.getInstance().uid!!)
-                                    .updateChildren(obj).addOnSuccessListener {  }
-                            }
-                        }
-                    }
                 binding!!.imgProfile.setImageURI(data.data)
                 selectedImage = data.data
             }

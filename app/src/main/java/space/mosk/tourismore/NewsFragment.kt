@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +28,6 @@ class NewsFragment : Fragment() {
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
-    private val mStorage: StorageReference = FirebaseStorage.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +46,14 @@ class NewsFragment : Fragment() {
         mDatabase.child("feed-posts").child(mAuth.currentUser!!.uid).addValueEventListener(
             ValueEventListenerAdapter{
                 val posts = it.children.map { it.getValue(FeedPost::class.java) }
+                    .sortedByDescending { it!!.timestampDate() }
                 feed_recycler.adapter = FeedAdapter(posts as List<FeedPost>)
                 feed_recycler.layoutManager = LinearLayoutManager(view.context)
+                if (feed_recycler.adapter?.itemCount == 0){
+                    view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
+                } else{
+                    view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.GONE
+                }
         })
         return view
     }
