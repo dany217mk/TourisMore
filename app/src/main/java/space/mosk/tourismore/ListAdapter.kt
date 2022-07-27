@@ -40,15 +40,22 @@ interface OnViewClickListener {
     fun onItemClick(pos : Int)
 }
 
-data class Way(val name :String,val littleDescr: String, val description : String, val img : Int, val srcImg : Int)
+data class Way(val name :String,val littleDescr: String, val description : String, val img : Int, val srcImg : Int){
+    /*
+    constructor( name :String, littleDescr: String,  description : String,  img : String, srcImg : String) : this(name,littleDescr,  description, img, srcImg){
+
+    }
+
+     */
+}
 
 fun makeSampleWays() : List<Way>{
     return listOf(
         Way("Кремль", "15 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Также кремль", "25 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Еще один", "16 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Почти", "12 KM","Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
-        Way("ААААААА", "1225 KM","ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Александровский сад", "25 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("ВДНХ", "16 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Музей космонавтики", "12 KM","Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Центр океанографии и морской биологии Москвариум", "1225 KM","ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
         Way("ббббббббббб", "24 KM","ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
     )
 }
