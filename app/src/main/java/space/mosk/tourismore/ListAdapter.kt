@@ -23,7 +23,17 @@ class ListAdapter(private val array: List<Way>, val onViewClick: OnViewClickList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = array[position].name
+        if(array[position].name.length > 19){
+            var s = ""
+            for(i in 0 until 10){
+                s += array[position].name[i]
+            }
+            s += "..."
+            holder.name.text = s
+        }
+        else{
+            holder.name.text = array[position].name
+        }
         holder.littleDesc.text = array[position].littleDescr
         holder.img.setImageResource(array[position].img)
         holder.itemView.setOnClickListener{
@@ -45,10 +55,10 @@ data class Way(val name :String,val littleDescr: String, val description : Strin
 fun makeSampleWays() : List<Way>{
     return listOf(
         Way("Кремль", "15 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Также кремль", "25 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Еще один", "16 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
-        Way("Почти", "12 KM","Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
-        Way("ААААААА", "1225 KM","ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
-        Way("ббббббббббб", "24 KM","ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Александровский сад", "25 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("ВДНХ", "16 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Музей космонавтики", "12 KM","Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Центр океанографии и морской биологии Москвариум", "1225 KM","ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Офис ВК", "24 KM","ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
     )
 }

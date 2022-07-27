@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,12 +28,17 @@ class FeedAdapter(private val posts: List<FeedPost>) : RecyclerView.Adapter<Feed
             holder.view.findViewById<TextView>(R.id.like_text).text = post.likesCount.toString() + " likes"
         }
 
+        holder.view.findViewById<ImageView>(R.id.like_img).setOnClickListener{
+
+        }
+
 
         holder.view.findViewById<TextView>(R.id.title_text).text = post.caption
         if (post.profileImage != "No Image"){
             Glide.with(holder.view).load(post.profileImage).centerCrop().into(holder.view.findViewById(R.id.user_photo_image))
+        } else{
+            Glide.with(holder.view).load(R.drawable.profile).fallback(R.drawable.profile).centerCrop().into(holder.view.findViewById(R.id.user_photo_image))
         }
-
         Glide.with(holder.view).load(post.image).centerCrop().into(holder.view.findViewById(R.id.post_image))
     }
 

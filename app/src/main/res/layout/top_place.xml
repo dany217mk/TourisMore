@@ -2,41 +2,71 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="7dp"
+    android:layout_marginBottom="7dp"
+    android:layout_marginStart="7dp"
+    android:layout_marginEnd="7dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="20dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.flaviofaria.kenburnsview.KenBurnsView
+            android:adjustViewBounds="true"
             android:id="@+id/tourImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+             />
 
-        <TextView
-            android:id="@+id/tourTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_variablefont_wght"
-            android:text="Title"
-            android:textSize="23sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
-
-        <TextView
-            android:id="@+id/tourDescription"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_variablefont_wght"
-            android:text="Description"
-            android:textSize="23sp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tourTitle" />
+            app:layout_constraintEnd_toEndOf="@+id/tourImg"
+            app:layout_constraintStart_toStartOf="@+id/tourImg"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="#50000000"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/tourTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_variablefont_fat"
+                android:text="Title"
+                android:textColor="#ffffff"
+                android:textSize="23sp"
+                app:layout_constraintBottom_toTopOf="@+id/tourDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.95" />
+
+            <TextView
+                android:id="@+id/tourDescription"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/comfortaa_variablefont_fat"
+                android:text="Description"
+                android:textColor="#ffffff"
+                android:textSize="23sp"
+                app:layout_constrainedWidth="true"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.98" />
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

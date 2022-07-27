@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Записи"
+        android:text="Лента"
         android:textSize="24sp"
         android:textColor="@color/main_color"
         android:layout_marginTop="10dp"
@@ -27,6 +27,20 @@
         app:layout_constraintTop_toTopOf="@+id/label_text"
         android:layout_marginTop="80dp"
         android:id="@+id/feed_recycler" />
+
+    <TextView
+        android:id="@+id/emptyTextNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa_variablefont_wght"
+        android:text="Здесь пока-что ничего нет"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/feed_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_text"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
