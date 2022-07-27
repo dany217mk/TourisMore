@@ -46,7 +46,7 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/freinds"/>
+                        android:src="@drawable/group_1"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/plus"/>
+                        android:src="@drawable/add_thin"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/top"/>
+                        android:src="@drawable/top_three"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/ratings"/>
+                        android:src="@drawable/rating_1"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
                         android:layout_width="110dp"
                         android:layout_gravity="center"
                         android:layout_height="110dp"
-                        android:src="@drawable/step"/>
+                        android:src="@drawable/footprints"/>
                     <TextView
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
