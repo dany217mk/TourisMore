@@ -28,6 +28,8 @@ class PathsFragment : Fragment(), OnViewClickListener {
     private lateinit var listView: RecyclerView
     private lateinit var model : ShareBetweenFragments
     private lateinit var editText : EditText
+    private lateinit var errorText : TextView
+    private var currentArray : List<Way> = ways
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +51,8 @@ class PathsFragment : Fragment(), OnViewClickListener {
         super.onViewCreated(view, savedInstanceState)
         listView = view.findViewById(R.id.recyclerContainer)
         editText = view.findViewById(R.id.autoComplete)
+        errorText = view.findViewById(R.id.errorText)
         editText.setTextColor(Color.parseColor("#ffffff"))
-
 
         listView.layoutManager = LinearLayoutManager(context)
 
@@ -73,10 +75,18 @@ class PathsFragment : Fragment(), OnViewClickListener {
                     }
                 }
                 if(p0.toString() != ""){
+                    currentArray = matchNames
                     listView.adapter = ListAdapter(matchNames, this@PathsFragment)
+                    if(matchNames.size == 0){
+                        errorText.text = "Ничего не найдено..."
+                    }else{
+                        errorText.text = ""
+                    }
                 }
                 else{
+                    currentArray = ways
                     listView.adapter = ListAdapter(ways, this@PathsFragment)
+                    errorText.text = ""
                 }
             }
 
@@ -99,10 +109,15 @@ class PathsFragment : Fragment(), OnViewClickListener {
 
     override fun onItemClick(pos: Int) {
         model = ViewModelProvider(requireActivity()).get(ShareBetweenFragments::class.java)
-        model.sendIndex(pos)
+        for(i in 0 until ways.size){
+            if(currentArray[pos] == ways[i]){
+                model.sendIndex(i)
+            }
+        }
         requireActivity().supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
             .replace(R.id.container, ChooseMapFragment())
             .commit()
     }
+
 }
