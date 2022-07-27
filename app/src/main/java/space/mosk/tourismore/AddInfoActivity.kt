@@ -160,7 +160,7 @@ class AddInfoActivity : AppCompatActivity() {
             } else{
                 val uid = auth!!.uid
                 val phone = auth!!.currentUser!!.phoneNumber
-                val user = User(uid, name, surname, date_of_birth, gender, phone, "No Image")
+                val user = User(uid, name, surname, (name+" "+surname) , date_of_birth, gender, phone, "No Image")
                 database!!.reference
                     .child("users")
                     .child(uid!!)
