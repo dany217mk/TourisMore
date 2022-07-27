@@ -51,11 +51,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/settingsBtn"
+                android:id="@+id/signout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                app:icon="@drawable/ic_baseline_settings_24"
+                app:icon="@drawable/ic_baseline_exit_to_app"
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"

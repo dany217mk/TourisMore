@@ -1,6 +1,7 @@
 package space.mosk.tourismore
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,8 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class NewsFragment : Fragment() {
+    private lateinit var posts: List<FeedPost?>
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,17 +46,31 @@ class NewsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
         val feed_recycler = view.findViewById<RecyclerView>(R.id.feed_recycler)
+
+
+
         mDatabase.child("feed-posts").child(mAuth.currentUser!!.uid).addValueEventListener(
             ValueEventListenerAdapter{
-                val posts = it.children.map { it.getValue(FeedPost::class.java) }
+                posts = it.children.map { it.getValue(FeedPost::class.java) }
                     .sortedByDescending { it!!.timestampDate() }
-                feed_recycler.adapter = FeedAdapter(posts as List<FeedPost>)
-                feed_recycler.layoutManager = LinearLayoutManager(view.context)
-                if (feed_recycler.adapter?.itemCount == 0){
-                    view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
-                } else{
-                    view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.GONE
-                }
+                mDatabase.child("users").child(mAuth.uid.toString()).child("follows")
+                    .addValueEventListener(ValueEventListenerAdapter{dataSnapshot ->
+                    for (snapshot in dataSnapshot.children){
+                        mDatabase.child("feed-posts").child(snapshot.key.toString())
+                            .addValueEventListener(ValueEventListenerAdapter{
+                                posts = posts + it.children.map { it.getValue(FeedPost::class.java) }
+                                    .sortedByDescending { it!!.timestampDate() }
+                        })
+                    }
+                        posts.sortedByDescending { it!!.timestampDate()}
+                        feed_recycler.adapter = FeedAdapter(posts as List<FeedPost>)
+                        feed_recycler.layoutManager = LinearLayoutManager(view.context)
+                        if (feed_recycler.adapter?.itemCount == 0){
+                            view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
+                        } else{
+                            view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.GONE
+                        }
+                })
         })
         return view
     }

@@ -65,15 +65,31 @@
         app:layout_constraintTop_toBottomOf="@+id/materialCardView4"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/emptyTextFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/comfortaa_variablefont_wght"
+        android:text="Ничего не найдено"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/friends_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_users"
+        tools:ignore="MissingConstraints" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friends_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_users"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,9 +88,15 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
                                 mUsers = mUsers + user
                             }
                         }
+                        if (mUsers.isEmpty()){
+                            view.findViewById<TextView>(R.id.emptyTextFriends).visibility = View.VISIBLE
+                        } else{
+                            view.findViewById<TextView>(R.id.emptyTextFriends).visibility = View.GONE
+                        }
                         mAdapter.update(mUsers, mUser.follows)
                     })
                 } else{
+                    view.findViewById<TextView>(R.id.emptyTextFriends).visibility = View.GONE
                     getAllUsers(mAuth.currentUser!!.uid)
                 }
             }
@@ -144,10 +150,10 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
     override fun follow(uid: String) {
         val setFollow = mDatabase.child("users").child(mUser.uid.toString()).child("follows").child(uid).setValue(true)
         val setFollowers = mDatabase.child("users").child(uid).child("followers").child(mUser.uid.toString()).setValue(true)
-        mDatabase.child("feed-posts").child(uid).addListenerForSingleValueEvent(ValueEventListenerAdapter{
+       /* mDatabase.child("feed-posts").child(uid).addListenerForSingleValueEvent(ValueEventListenerAdapter{
             val postsMap = it.children.map { it.key to it.value}.toMap()
             mDatabase.child("feed-posts").child(mUser.uid!!).updateChildren(postsMap)
-        })
+        })*/
         setFollow.continueWith({setFollowers}).addOnCompleteListener {
             if (it.isSuccessful){
                 mAdapter.followed(uid)
@@ -158,10 +164,10 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
     override fun unfollow(uid: String) {
         val setFollow = mDatabase.child("users").child(mUser.uid.toString()).child("follows").child(uid).removeValue()
         val setFollowers = mDatabase.child("users").child(uid).child("followers").child(mUser.uid.toString()).removeValue()
-        mDatabase.child("feed-posts").child(uid).addListenerForSingleValueEvent(ValueEventListenerAdapter{
+        /*mDatabase.child("feed-posts").child(uid).addListenerForSingleValueEvent(ValueEventListenerAdapter{
             val postsMap = it.children.map { it.key  to null }.toMap()
             mDatabase.child("feed-posts").child(mUser.uid!!).updateChildren(postsMap)
-        })
+        })*/
         setFollow.continueWith({setFollowers}).addOnCompleteListener {
             if (it.isSuccessful){
                 mAdapter.unfollowed(uid)
