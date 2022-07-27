@@ -102,7 +102,6 @@ class AddRecordFragment : Fragment() {
                                    .addOnCompleteListener{
                                        if (it.isSuccessful){
                                            mDatabase.child("feed-posts")
-                                               .child(mAuth.currentUser!!.uid)
                                                .push().setValue(FeedPost(
                                                    uid = mAuth.currentUser!!.uid,
                                                    name = mUser.name.toString(),

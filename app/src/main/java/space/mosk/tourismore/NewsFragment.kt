@@ -2,27 +2,26 @@ package space.mosk.tourismore
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import space.mosk.tourismore.R
-import space.mosk.tourismore.ValueEventListenerAdapter
 import space.mosk.tourismore.models.FeedPost
+import java.util.*
+import java.util.concurrent.Semaphore
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class NewsFragment : Fragment() {
+    private lateinit var AllPosts: List<FeedPost?>
     private lateinit var posts: List<FeedPost?>
 
     // TODO: Rename and change types of parameters
@@ -31,6 +30,8 @@ class NewsFragment : Fragment() {
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
+
+    private lateinit var followsList: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,32 +49,37 @@ class NewsFragment : Fragment() {
         val feed_recycler = view.findViewById<RecyclerView>(R.id.feed_recycler)
 
 
-
-        mDatabase.child("feed-posts").child(mAuth.currentUser!!.uid).addValueEventListener(
-            ValueEventListenerAdapter{
-                posts = it.children.map { it.getValue(FeedPost::class.java) }
-                    .sortedByDescending { it!!.timestampDate() }
-                mDatabase.child("users").child(mAuth.uid.toString()).child("follows")
-                    .addValueEventListener(ValueEventListenerAdapter{dataSnapshot ->
+        mDatabase.child("users").child(mAuth.uid.toString()).child("follows")
+            .addValueEventListener(ValueEventListenerAdapter{dataSnapshot ->
+                followsList = listOf()
+                followsList = followsList.plus(mAuth.uid.toString())
+                for (snapshot in dataSnapshot.children){
+                    followsList = followsList.plus(snapshot.key.toString())!!
+                }
+                val postsRef = mDatabase.child("feed-posts")
+                postsRef.addValueEventListener(ValueEventListenerAdapter{dataSnapshot->
+                    posts = listOf()
                     for (snapshot in dataSnapshot.children){
-                        mDatabase.child("feed-posts").child(snapshot.key.toString())
-                            .addValueEventListener(ValueEventListenerAdapter{
-                                posts = posts + it.children.map { it.getValue(FeedPost::class.java) }
-                                    .sortedByDescending { it!!.timestampDate() }
-                        })
-                    }
-                        posts.sortedByDescending { it!!.timestampDate()}
-                        feed_recycler.adapter = FeedAdapter(posts as List<FeedPost>)
-                        feed_recycler.layoutManager = LinearLayoutManager(view.context)
-                        if (feed_recycler.adapter?.itemCount == 0){
-                            view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
-                        } else{
-                            view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.GONE
+                        val post = snapshot.getValue(FeedPost::class.java)
+                        for (id in followsList){
+                            if (post!!.uid == id){
+                                posts = posts + post
+                            }
                         }
+                    }
+                    feed_recycler.adapter = FeedAdapter(posts.asReversed() as List<FeedPost>)
+                    feed_recycler.layoutManager = LinearLayoutManager(view.context)
+                    if (feed_recycler.adapter?.itemCount == 0){
+                        view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
+                    } else{
+                        view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.GONE
+                    }
                 })
-        })
+            })
         return view
     }
+
+
 
     companion object {
         @JvmStatic
