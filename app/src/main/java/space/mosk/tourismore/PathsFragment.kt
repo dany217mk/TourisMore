@@ -1,10 +1,14 @@
 package space.mosk.tourismore
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -23,6 +27,7 @@ class PathsFragment : Fragment(), OnViewClickListener {
 
     private lateinit var listView: RecyclerView
     private lateinit var model : ShareBetweenFragments
+    private lateinit var editText : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,10 @@ class PathsFragment : Fragment(), OnViewClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listView = view.findViewById(R.id.recyclerContainer)
+        editText = view.findViewById(R.id.autoComplete)
+        editText.setTextColor(Color.parseColor("#ffffff"))
+
+
         listView.layoutManager = LinearLayoutManager(context)
 
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
@@ -51,6 +60,30 @@ class PathsFragment : Fragment(), OnViewClickListener {
 
         listView.addItemDecoration(itemDecorator)
         listView.adapter = ListAdapter(ways, this)
+
+        editText.addTextChangedListener(object  : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                var matchNames : List<Way> = listOf()
+                for(i in 0 until ways.size){
+                    if(ways[i].name.toLowerCase().contains(p0.toString().toLowerCase())){
+                        matchNames += ways[i]
+                    }
+                }
+                if(p0.toString() != ""){
+                    listView.adapter = ListAdapter(matchNames, this@PathsFragment)
+                }
+                else{
+                    listView.adapter = ListAdapter(ways, this@PathsFragment)
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
     }
 
     companion object {

@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -33,6 +35,8 @@ class TopPlacesFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_top_places, container, false)
         placesList = view.findViewById(R.id.topPlacesList)
         placesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+        val centerViews = LinearSnapHelper()
+        centerViews.attachToRecyclerView(placesList)
         placesList.adapter = TopPlacesAdapter(makePlaces())
         return view
     }
