@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.coroutineScope
 import space.mosk.tourismore.models.User
 
 private const val ARG_PARAM1 = "param1"
@@ -33,6 +34,7 @@ class ProfileFragment : Fragment() {
     private lateinit var profilePic : CircleImageView
     private lateinit var phtView : RecyclerView
     private var storage: FirebaseStorage? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,7 @@ class ProfileFragment : Fragment() {
             ?.let { itemDecorator.setDrawable(it) }
         phtView.addItemDecoration(itemDecorator)
         val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
+
         mDatabase.child("images").child(auth?.currentUser!!.uid).addValueEventListener(ValueEventListenerAdapter{
             phtView.adapter = GridRecyclerView(it.children.map{ it.getValue(String::class.java).toString() }.reversed())
             view.findViewById<TextView>(R.id.countPub).text = phtView.adapter?.itemCount.toString()
@@ -68,6 +71,7 @@ class ProfileFragment : Fragment() {
         view.findViewById<MaterialButton>(R.id.addPubBtn).setOnClickListener{
             loadFragment(AddPubFragment())
         }
+
         var ref = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().currentUser!!.uid)
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener{

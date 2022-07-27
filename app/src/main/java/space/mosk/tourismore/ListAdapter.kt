@@ -23,7 +23,17 @@ class ListAdapter(private val array: List<Way>, val onViewClick: OnViewClickList
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text = array[position].name
+        if(array[position].name.length > 19){
+            var s = ""
+            for(i in 0 until 10){
+                s += array[position].name[i]
+            }
+            s += "..."
+            holder.name.text = s
+        }
+        else{
+            holder.name.text = array[position].name
+        }
         holder.littleDesc.text = array[position].littleDescr
         holder.img.setImageResource(array[position].img)
         holder.itemView.setOnClickListener{
@@ -40,14 +50,7 @@ interface OnViewClickListener {
     fun onItemClick(pos : Int)
 }
 
-data class Way(val name :String,val littleDescr: String, val description : String, val img : Int, val srcImg : Int){
-    /*
-    constructor( name :String, littleDescr: String,  description : String,  img : String, srcImg : String) : this(name,littleDescr,  description, img, srcImg){
-
-    }
-
-     */
-}
+data class Way(val name :String,val littleDescr: String, val description : String, val img : Int, val srcImg : Int)
 
 fun makeSampleWays() : List<Way>{
     return listOf(
@@ -56,6 +59,6 @@ fun makeSampleWays() : List<Way>{
         Way("ВДНХ", "16 KM","Годнота", R.drawable.squared_img, R.drawable.kremlin),
         Way("Музей космонавтики", "12 KM","Супер пупер очень круто", R.drawable.squared_img, R.drawable.kremlin),
         Way("Центр океанографии и морской биологии Москвариум", "1225 KM","ааааааааааааааа", R.drawable.squared_img, R.drawable.kremlin),
-        Way("ббббббббббб", "24 KM","ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
+        Way("Офис ВК", "24 KM","ббббббббббббб", R.drawable.squared_img, R.drawable.kremlin),
     )
 }
