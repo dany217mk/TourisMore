@@ -1,6 +1,5 @@
 package space.mosk.tourismore
 
-import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
+import com.google.android.material.button.MaterialButton
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -18,6 +17,7 @@ class TopPlacesFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var placesList : RecyclerView
+    private lateinit var backBtn : MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,14 @@ class TopPlacesFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_top_places, container, false)
         placesList = view.findViewById(R.id.topPlacesList)
-        placesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+        backBtn = view.findViewById(R.id.backToServsBtn)
+        backBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
+                .replace(R.id.container, ServicesFragment())
+                .commit()
+        }
+        placesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val centerViews = LinearSnapHelper()
         centerViews.attachToRecyclerView(placesList)
         placesList.adapter = TopPlacesAdapter(makePlaces())
