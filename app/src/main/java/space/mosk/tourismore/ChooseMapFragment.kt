@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.material.switchmaterial.SwitchMaterial
 import space.mosk.tourismore.PanoramaFragment
 import space.mosk.tourismore.R
@@ -58,7 +59,8 @@ class ChooseMapFragment : Fragment() {
         val model = ViewModelProvider(requireActivity()).get(ShareBetweenFragments::class.java)
         model.index.observe(viewLifecycleOwner, Observer{
             index = it
-            imgView.setImageResource(ways[it].srcImg)
+            Glide.with(requireContext()).load(ways[it].srcImg).into(imgView)
+            //imgView.setImageResource(ways[it].srcImg)
             pathName.text = ways[it].name
             description.text = ways[it].description
         })
