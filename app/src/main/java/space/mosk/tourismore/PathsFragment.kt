@@ -109,11 +109,14 @@ class PathsFragment : Fragment(), OnViewClickListener {
 
     override fun onItemClick(pos: Int) {
         model = ViewModelProvider(requireActivity()).get(ShareBetweenFragments::class.java)
+        /*
         for(i in 0 until ways.size){
             if(currentArray[pos] == ways[i]){
                 model.sendIndex(i)
             }
         }
+         */
+        model.sendIndex(ways.indexOf(currentArray[pos]))
         requireActivity().supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
             .replace(R.id.container, ChooseMapFragment())
