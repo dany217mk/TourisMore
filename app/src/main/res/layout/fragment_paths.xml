@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgappmain"
-    tools:context=".PathsFragment">
+    tools:context=".fragments.PathsFragment">
 
     <TextView
         android:layout_marginStart="5dp"
