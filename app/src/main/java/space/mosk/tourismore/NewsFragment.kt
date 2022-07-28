@@ -1,6 +1,7 @@
 package space.mosk.tourismore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
@@ -64,6 +66,7 @@ class NewsFragment : Fragment(), FeedAdapter.Listener {
                 val postsRef = mDatabase.child("feed-posts")
                 postsRef.addValueEventListener(ValueEventListenerAdapter{dataSnapshot->
                     posts = listOf()
+
                     for (snapshot in dataSnapshot.children){
                         val post = snapshot.getValue(FeedPost::class.java)?.copy(id = snapshot.key.toString())
                         for (id in followsList){
