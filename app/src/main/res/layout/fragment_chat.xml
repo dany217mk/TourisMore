@@ -160,6 +160,7 @@
                     android:layout_weight="3"
                     android:padding="9dp"
                     android:src="@drawable/ic_attachment"
+                    android:visibility="gone"
                     app:tint="#5C5C5C" />
                 <ImageView
                     android:id="@+id/sendBtn"
@@ -170,7 +171,7 @@
                     android:background="@drawable/input_shape"
                     android:backgroundTint="#182881"
                     android:padding="12dp"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_send"
                     app:tint="@color/white" />
 

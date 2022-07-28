@@ -99,7 +99,7 @@ class ChatFragment(private  var user: User) : Fragment() {
                 if (s.isNotEmpty()){
                     view.findViewById<ImageView>(R.id.sendBtn).visibility = View.VISIBLE
                 } else{
-                    view.findViewById<ImageView>(R.id.sendBtn).visibility = View.GONE
+                    view.findViewById<ImageView>(R.id.sendBtn).visibility = View.INVISIBLE
                 }
                 mDatabase.child("presence").child(senderUid!!).setValue("typing...")
                 handler.removeCallbacksAndMessages(null)
