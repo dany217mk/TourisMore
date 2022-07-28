@@ -10,27 +10,40 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mosk.tourismore.models.FeedPost
 
-class FeedAdapter(private val posts: List<FeedPost>) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+class FeedAdapter(private val listener: Listener, private val posts: List<FeedPost>) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+
+    private  var postLikes: Map<Int, NewsFragment.FeedPostLikes> = emptyMap()
+
+    interface Listener{
+        fun toggleLike(postId: String)
+        fun loadLikes(id: String, position: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
        val view = LayoutInflater.from(parent.context).inflate(R.layout.feed_item, parent, false)
         return ViewHolder(view)
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts[position]
+        val likes = postLikes[position] ?: NewsFragment.FeedPostLikes(0, false)
         holder.view.findViewById<TextView>(R.id.username).text = post.name + " " + post.surname
-        if (post.likesCount == 0){
+        if (likes.likesCount == 0){
             holder.view.findViewById<TextView>(R.id.like_text).visibility = View.GONE
         } else {
             holder.view.findViewById<TextView>(R.id.like_text).visibility = View.VISIBLE
-            holder.view.findViewById<TextView>(R.id.like_text).text = post.likesCount.toString() + " likes"
+            holder.view.findViewById<TextView>(R.id.like_text).text = likes.likesCount.toString() + " likes"
         }
 
         holder.view.findViewById<ImageView>(R.id.like_img).setOnClickListener{
-
+            listener.toggleLike(post.id)
         }
+        holder.view.findViewById<ImageView>(R.id.like_img).setImageResource(if (likes.likes) R.drawable.ic_baseline_favorite else R.drawable.ic_baseline_favorite_border)
+
+        listener.loadLikes(post.id, position)
 
 
         holder.view.findViewById<TextView>(R.id.title_text).text = post.caption
@@ -44,5 +57,10 @@ class FeedAdapter(private val posts: List<FeedPost>) : RecyclerView.Adapter<Feed
 
     override fun getItemCount(): Int {
         return posts.size
+    }
+
+    fun updatePostLikes(position: Int, likes: NewsFragment.FeedPostLikes) {
+        postLikes += (position to likes)
+        notifyItemChanged(position)
     }
 }

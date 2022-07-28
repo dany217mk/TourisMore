@@ -1,7 +1,6 @@
 package space.mosk.tourismore
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import space.mosk.tourismore.models.FeedPost
-import java.util.*
 import java.util.concurrent.Semaphore
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class NewsFragment : Fragment() {
-    private lateinit var AllPosts: List<FeedPost?>
+class NewsFragment : Fragment(), FeedAdapter.Listener {
+    private lateinit var mAdapter: FeedAdapter
     private lateinit var posts: List<FeedPost?>
 
     // TODO: Rename and change types of parameters
@@ -33,6 +32,8 @@ class NewsFragment : Fragment() {
 
     private lateinit var followsList: List<String>
 
+    private var mLikesListener: Map<String, ValueEventListener> = emptyMap()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,6 +41,10 @@ class NewsFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+
+    data class FeedPostLikes(
+        val likesCount: Int,
+        val likes: Boolean)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,14 +65,15 @@ class NewsFragment : Fragment() {
                 postsRef.addValueEventListener(ValueEventListenerAdapter{dataSnapshot->
                     posts = listOf()
                     for (snapshot in dataSnapshot.children){
-                        val post = snapshot.getValue(FeedPost::class.java)
+                        val post = snapshot.getValue(FeedPost::class.java)?.copy(id = snapshot.key.toString())
                         for (id in followsList){
                             if (post!!.uid == id){
                                 posts = posts + post
                             }
                         }
                     }
-                    feed_recycler.adapter = FeedAdapter(posts.asReversed() as List<FeedPost>)
+                    mAdapter = FeedAdapter(this, posts.asReversed() as List<FeedPost>)
+                    feed_recycler.adapter = mAdapter
                     feed_recycler.layoutManager = LinearLayoutManager(view.context)
                     if (feed_recycler.adapter?.itemCount == 0){
                         view.findViewById<TextView>(R.id.emptyTextNews).visibility = View.VISIBLE
@@ -90,5 +96,34 @@ class NewsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun toggleLike(postId: String) {
+        val ref = mDatabase.child("likes").child(postId).child(mAuth.uid!!)
+
+            ref.addListenerForSingleValueEvent(ValueEventListenerAdapter{
+                if (it.exists()){
+                    ref.removeValue()
+                } else{
+                    ref.setValue(true)
+                }
+            })
+    }
+
+    override fun loadLikes(postId: String, position: Int) {
+        fun createListener() =
+            mDatabase.child("likes").child(postId).addValueEventListener(ValueEventListenerAdapter{
+                val usersLikes = it.children.map {it.key}.toSet()
+                val postLikes = FeedPostLikes(usersLikes.size, usersLikes.contains(mAuth.uid))
+                mAdapter.updatePostLikes(position, postLikes)
+            })
+        if (mLikesListener[postId] == null){
+            mLikesListener += (postId to createListener())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mLikesListener.values.forEach { mDatabase.removeEventListener(it) }
     }
 }

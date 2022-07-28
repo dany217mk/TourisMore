@@ -46,7 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
