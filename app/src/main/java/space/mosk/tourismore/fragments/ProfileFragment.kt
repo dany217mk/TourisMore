@@ -140,13 +140,15 @@ class ProfileFragment : Fragment(), profilePicsClick {
     }
 
     override fun onClick(pos: Int) {
+        /*
         val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
         mDatabase.child("images").child(auth?.currentUser!!.uid).addValueEventListener(ValueEventListenerAdapter{
             val photoes = it.children.map{ it.getValue(String::class.java).toString() }.reversed()
             val imgDialog = ShowImageDialog(photoes[pos])
             imgDialog.show(requireActivity().supportFragmentManager, "img")
         })
-    }
 
+         */
+    }
 
 }
