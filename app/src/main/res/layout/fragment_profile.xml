@@ -130,7 +130,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/name">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/followers_num_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -140,11 +140,11 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/followers_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa_variablefont_wght"
-                    android:text="Подписки"
+                    android:text="Подписчиков"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
 
@@ -164,7 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/name">
 
                 <TextView
-                    android:id="@+id/subCount"
+                    android:id="@+id/follows_num_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -174,11 +174,11 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/subText"
+                    android:id="@+id/follows_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa_variablefont_wght"
-                    android:text="Подписчиков"
+                    android:text="Подписки"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
 
