@@ -76,6 +76,7 @@ class ProfileFragment : Fragment() {
             loadFragment(AddPubFragment())
         }
 
+
         view.findViewById<Button>(R.id.signout).setOnClickListener {
             mAuth.signOut()
             val intent: Intent = Intent(view.context, AuthActivity::class.java)
