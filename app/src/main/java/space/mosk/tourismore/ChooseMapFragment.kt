@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import space.mosk.tourismore.PanoramaFragment
 import space.mosk.tourismore.R
@@ -30,7 +31,8 @@ class ChooseMapFragment : Fragment() {
     private lateinit var description : TextView
     private lateinit var goBtn :Button
     private lateinit var backBtn : Button
-    private lateinit var swithcer : SwitchMaterial
+    //private lateinit var swithcer : SwitchMaterial
+    private lateinit var previewButton : MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,12 @@ class ChooseMapFragment : Fragment() {
         description = view.findViewById(R.id.textView2)
         goBtn = view.findViewById(R.id.materialButton)
         backBtn = view.findViewById(R.id.materialButton2)
-        swithcer = view.findViewById(R.id.swtch)
+        previewButton = view.findViewById(R.id.prevBtn)
+
+        previewButton.setOnClickListener {
+            val intent = Intent(context, PanoramaFragment::class.java)
+            startActivity(intent)
+        }
 
         backBtn.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
@@ -66,10 +73,7 @@ class ChooseMapFragment : Fragment() {
         })
 
         goBtn.setOnClickListener{
-            if(swithcer.isChecked){
-                val intent = Intent(context, PanoramaFragment::class.java)
-                startActivity(intent)
-            }
+
         }
 
     }
