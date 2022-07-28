@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import pl.droidsonroids.gif.GifImageView
 import space.mosk.tourismore.R
 import space.mosk.tourismore.models.LastMessage
 import space.mosk.tourismore.models.Message
@@ -59,7 +61,7 @@ class MessagesFragment : Fragment() {
         messages_recycler.adapter = mAdapter
         messages_recycler.layoutManager = LinearLayoutManager(view.context)
         getChatUsers(uid, view)
-
+        view.findViewById<GifImageView>(R.id.preload).visibility = View.GONE
 
 
         return view

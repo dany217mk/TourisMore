@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,6 +23,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import space.mosk.tourismore.models.Message
 import space.mosk.tourismore.models.User
 import java.util.*
@@ -113,6 +111,11 @@ class ChatFragment(private  var user: User) : Fragment() {
 
 
 
+
+
+
+
+
         mDatabase.child("presence").child(receiverUid!!)
             .addValueEventListener(ValueEventListenerAdapter { snapshot->
                     if (snapshot.exists()) {
@@ -147,6 +150,17 @@ class ChatFragment(private  var user: User) : Fragment() {
                     adapter!!.notifyDataSetChanged()
                 chat_recycle.scrollToPosition(messages!!.size-1)
             })
+
+        KeyboardVisibilityEvent.setEventListener(
+            requireActivity(),
+            object : KeyboardVisibilityEventListener {
+                override fun onVisibilityChanged(isOpen: Boolean) {
+                    if (isOpen){
+                        chat_recycle.scrollToPosition(messages!!.size-1)
+                    }
+                }
+            })
+
 
         view.findViewById<ImageView>(R.id.sendBtn).setOnClickListener {
             val messageTxt: String = msgBox?.text.toString()
