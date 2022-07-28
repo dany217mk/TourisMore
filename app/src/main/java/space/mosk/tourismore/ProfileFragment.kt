@@ -100,6 +100,8 @@ class ProfileFragment : Fragment(), profilePicsClick {
                 if (user?.profileImage != "No Image"){
                     Glide.with(context!!).load(user?.profileImage).into(profilePic)
                 }
+                view.findViewById<TextView>(R.id.follows_num_text).text = user?.follows?.size.toString()
+                view.findViewById<TextView>(R.id.followers_num_text).text = user?.followers?.size.toString()
             }
             override fun onCancelled(error: DatabaseError) {
 
