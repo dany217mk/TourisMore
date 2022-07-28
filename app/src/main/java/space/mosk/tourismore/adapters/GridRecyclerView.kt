@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
-class GridRecyclerView(val imgArray : List<String>, val onItemClicked : profilePicsClick) : RecyclerView.Adapter<GridRecyclerView.ViewHolder>() {
+class GridRecyclerView(val imgArray : List<String>) : RecyclerView.Adapter<GridRecyclerView.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val img : ImageView = itemView.findViewById(R.id.profilePh)
@@ -23,7 +22,19 @@ class GridRecyclerView(val imgArray : List<String>, val onItemClicked : profileP
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(holder.itemView).load(imgArray[position]).centerCrop().into(holder.img)
         holder.itemView.setOnClickListener {
-            onItemClicked.onClick(position)
+            val dialog = AlertDialog.Builder(holder.itemView.context)
+            dialog.setTitle("Запись")
+            val inflater = LayoutInflater.from(holder.itemView.context)
+            val get_img_window: View = inflater.inflate(R.layout.get_img_window, null)
+            dialog.setView(get_img_window)
+            val image = get_img_window.findViewById<ImageView>(R.id.image_get)
+            Glide.with(get_img_window).load(imgArray[position]).centerCrop().into(image)
+
+            dialog.setNegativeButton(
+                "Отмена"
+            ) { dialogInterface, i -> dialogInterface.dismiss() }
+
+            dialog.show()
         }
     }
 

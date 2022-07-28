@@ -31,7 +31,7 @@ import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ProfileFragment : Fragment(), profilePicsClick {
+class ProfileFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -70,7 +70,7 @@ class ProfileFragment : Fragment(), profilePicsClick {
         mDatabase.child("images").child(auth?.currentUser!!.uid).addValueEventListener(
             ValueEventListenerAdapter{
             val photoes = it.children.map{ it.getValue(String::class.java).toString() }.reversed()
-            phtView.adapter = GridRecyclerView(photoes, this@ProfileFragment)
+            phtView.adapter = GridRecyclerView(photoes)
             view.findViewById<TextView>(R.id.countPub).text = phtView.adapter?.itemCount.toString()
             if (phtView.adapter?.itemCount == 0){
                 view.findViewById<TextView>(R.id.emptyText).visibility = View.VISIBLE
@@ -139,16 +139,5 @@ class ProfileFragment : Fragment(), profilePicsClick {
             }
     }
 
-    override fun onClick(pos: Int) {
-        /*
-        val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
-        mDatabase.child("images").child(auth?.currentUser!!.uid).addValueEventListener(ValueEventListenerAdapter{
-            val photoes = it.children.map{ it.getValue(String::class.java).toString() }.reversed()
-            val imgDialog = ShowImageDialog(photoes[pos])
-            imgDialog.show(requireActivity().supportFragmentManager, "img")
-        })
-
-         */
-    }
 
 }
