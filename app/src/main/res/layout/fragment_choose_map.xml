@@ -134,7 +134,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:textSize="21sp"
+            android:textSize="17sp"
             android:fontFamily="@font/comfortaa_variablefont_wght"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -161,7 +161,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="7dp"
             android:text="@string/tour"
-            android:textSize="23sp"
+            android:textSize="17sp"
             android:fontFamily="@font/comfortaa_variablefont_wght"
             app:layout_constraintVertical_bias="0.0" />
 
