@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TourisMore">
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,17 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddInfoActivity" />
-        <activity android:name=".CheckCodeActivity" />
+        <activity android:name=".activities.AddInfoActivity" />
+        <activity android:name=".activities.CheckCodeActivity" />
         <activity
-            android:name=".StartActivity"
+            android:name=".activities.StartActivity"
             android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".AuthActivity"
+            android:name=".activities.AuthActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -52,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PanoramaFragment"
+            android:name=".fragments.PanoramaFragment"
             android:exported="false" />
 
         <meta-data
