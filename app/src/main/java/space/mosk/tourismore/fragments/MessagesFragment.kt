@@ -1,13 +1,10 @@
 package space.mosk.tourismore.fragments
 
-import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,15 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import pl.droidsonroids.gif.GifImageView
 import space.mosk.tourismore.R
 import space.mosk.tourismore.adapters.MessagesListAdapter
 import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 import space.mosk.tourismore.models.LastMessage
-import space.mosk.tourismore.models.Message
-import space.mosk.tourismore.models.User
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -54,7 +47,7 @@ class MessagesFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_messages, container, false)
         view.findViewById<Button>(R.id.addChatBtn).setOnClickListener {
-            loadFragment(MyFollowsFragment())
+            loadFragment(MyFollowsFragment("messages"))
         }
 
         val uid = mAuth.currentUser!!.uid

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -100,6 +101,15 @@ class ProfileFragment : Fragment(), profilePicsClick {
                     Glide.with(context!!).load(user?.profileImage).into(profilePic)
                 }
                 view.findViewById<TextView>(R.id.follows_num_text).text = user?.follows?.size.toString()
+
+                view.findViewById<LinearLayout>(R.id.follows_btn).setOnClickListener{
+                    loadFragment(MyFollowsFragment("profile"))
+                }
+
+                view.findViewById<LinearLayout>(R.id.followers_btn).setOnClickListener{
+                    loadFragment(MyFollowersFragment())
+                }
+
                 view.findViewById<TextView>(R.id.followers_num_text).text = user?.followers?.size.toString()
             }
             override fun onCancelled(error: DatabaseError) {

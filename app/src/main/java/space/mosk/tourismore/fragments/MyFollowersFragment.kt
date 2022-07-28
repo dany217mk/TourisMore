@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import space.mosk.tourismore.R
-import space.mosk.tourismore.adapters.MyFollowsAdapter
+import space.mosk.tourismore.adapters.MyFollowersAdapter
 import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 import space.mosk.tourismore.models.User
 
@@ -25,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [RatingFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Listener {
+class MyFollowersFragment() : Fragment(), MyFollowersAdapter.Listener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +34,7 @@ class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Li
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     private lateinit var mUsers: List<User>
-    private lateinit var mAdapter: MyFollowsAdapter
+    private lateinit var mAdapter: MyFollowersAdapter
 
     private lateinit var followsList: List<String>
 
@@ -52,9 +52,9 @@ class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Li
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_my_follows, container, false)
+        val view = inflater.inflate(R.layout.fragment_my_followers, container, false)
         val uid = mAuth.currentUser!!.uid
-        mAdapter = MyFollowsAdapter(this, requireActivity())
+        mAdapter = MyFollowersAdapter(this, requireActivity())
         val my_follows_recycler = view.findViewById<RecyclerView>(R.id.my_follows_recycler)
         my_follows_recycler.adapter = mAdapter
         my_follows_recycler.layoutManager = LinearLayoutManager(view.context)
@@ -63,7 +63,7 @@ class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Li
     }
 
     private fun getMyFollowsUsers(uid: String, view: View) {
-        mDatabase.child("users").child(mAuth.uid.toString()).child("follows").addValueEventListener(
+        mDatabase.child("users").child(mAuth.uid.toString()).child("followers").addValueEventListener(
             ValueEventListenerAdapter{dataSnapshot->
                 followsList = listOf()
                 for (snapshot in dataSnapshot.children){
@@ -84,30 +84,23 @@ class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Li
                     } else{
                         view.findViewById<TextView>(R.id.emptyTextFollows)?.visibility = View.GONE
                     }
-                    mAdapter.update(mUsers)
+                    mDatabase.child("users").child(mAuth.uid.toString()).addValueEventListener(ValueEventListenerAdapter{
+                        val user = it.getValue(User::class.java)
+                        mAdapter.update(mUsers, user!!.follows)
+                    })
                 })
-        })
+            })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         backButton = view.findViewById(R.id.backBtn1)
-        if (actionVal == "messages"){
-            backButton.setOnClickListener{
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
-                    .replace(R.id.container, MessagesFragment())
-                    .commit()
-            }
-        } else{
-            backButton.setOnClickListener{
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
-                    .replace(R.id.container, ProfileFragment())
-                    .commit()
-            }
+        backButton.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
+                .replace(R.id.container, ProfileFragment())
+                .commit()
         }
-
     }
 
     companion object {
@@ -130,8 +123,23 @@ class MyFollowsFragment(val actionVal: String) : Fragment(), MyFollowsAdapter.Li
             }
     }
 
+    override fun follow(uid: String) {
+        val setFollow = mDatabase.child("users").child(mAuth.uid.toString()).child("follows").child(uid).setValue(true)
+        val setFollowers = mDatabase.child("users").child(uid).child("followers").child(mAuth.uid.toString()).setValue(true)
+        setFollow.continueWith({setFollowers}).addOnCompleteListener {
+            if (it.isSuccessful){
+                mAdapter.followed(uid)
+            }
+        }
+    }
+
     override fun unfollow(uid: String) {
-        mDatabase.child("users").child(mAuth.uid.toString()).child("follows").child(uid).removeValue()
-        mDatabase.child("users").child(uid).child("followers").child(mAuth.uid.toString()).removeValue()
+        val setFollow = mDatabase.child("users").child(mAuth.uid.toString()).child("follows").child(uid).removeValue()
+        val setFollowers = mDatabase.child("users").child(uid).child("followers").child(mAuth.uid.toString()).removeValue()
+        setFollow.continueWith({setFollowers}).addOnCompleteListener {
+            if (it.isSuccessful){
+                mAdapter.unfollowed(uid)
+            }
+        }
     }
 }
