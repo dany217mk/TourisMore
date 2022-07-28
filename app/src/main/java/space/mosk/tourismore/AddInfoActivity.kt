@@ -142,7 +142,9 @@ class AddInfoActivity : AppCompatActivity() {
                             val imageUrl = it.result.toString()
                             val uid = auth!!.uid
                             val phone = auth!!.currentUser!!.phoneNumber
-                            val user = User(uid, name, surname, date_of_birth, gender, phone, imageUrl)
+                            val user = User(
+                                uid = uid,name = name, surname =  surname, date_of_birth =  date_of_birth, gender = gender, phoneNumber = phone,
+                                 profileImage= imageUrl, fullname = name+" "+surname)
                             database!!.reference
                                 .child("users")
                                 .child(uid!!)
