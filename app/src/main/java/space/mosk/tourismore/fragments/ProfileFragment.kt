@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView
+import space.mosk.tourismore.AddPubFragment
 import space.mosk.tourismore.GridRecyclerView
 import space.mosk.tourismore.activities.AuthActivity
 import space.mosk.tourismore.models.User

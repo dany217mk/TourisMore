@@ -11,6 +11,7 @@ data class FeedPost(
     val image: String = "",
     val caption: String = "",
     val longitude: String = "",
+    val latitude: String = "",
     val width: String = "",
     val timestamp: Any = ServerValue.TIMESTAMP,
     val profileImage: String = "",

@@ -3,16 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/dialog_image_layout.xml" value="0.18" />
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_choose_map.xml" value="0.25" />
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_friends.xml" value="0.1" />
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_paths.xml" value="0.16" />
         <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_top_places.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/friend_item.xml" value="0.22" />
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/my_follow_item.xml" value="0.33" />
-        <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/one_img.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/1/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/top_place.xml" value="0.33" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_choose_map.xml" value="0.22" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_news.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_paths.xml" value="0.33" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_services.xml" value="0.16" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_top_places.xml" value="0.5" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/one_path_block.xml" value="0.5" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore/app/src/main/res/layout/top_place.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/drawable/ic_baseline_services.xml" value="0.3045" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_choose_map.xml" value="0.25" />
@@ -22,8 +23,23 @@
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/fragment_sirvice_one.xml" value="0.5" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/layout/one_path_block.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/TourisMore1/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.33" />
-        <entry key="..\:/Users/Vyacheslav/AndroidStudioProjects/TourisMore/app/src/main/res/layout/fragment_paths.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/Vyacheslav/AndroidStudioProjects/TourisMore/app/src/main/res/layout/tmp_map.xml" value="0.11302083333333333" />
+        <entry key="app/src/main/res/drawable-v24/btn_ripple_next.xml" value="0.3355" />
+        <entry key="app/src/main/res/drawable/btn_ripple_add.xml" value="0.3345" />
+        <entry key="app/src/main/res/drawable/btn_ripple_continue.xml" value="0.3355" />
+        <entry key="app/src/main/res/drawable/feed_shape.xml" value="0.3355" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/feed_item.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/fragment_add_record.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/fragment_choose_map.xml" value="0.15555555555555556" />
+        <entry key="app/src/main/res/layout/fragment_feed_marker.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/fragment_make_path.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.15555555555555556" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.15555555555555556" />
+        <entry key="app/src/main/res/layout/fragment_paths.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_pedometer.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/map_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/panorama.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/route_fragment.xml" value="0.35643115942028986" />
       </map>
     </option>
   </component>
@@ -32,5 +48,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

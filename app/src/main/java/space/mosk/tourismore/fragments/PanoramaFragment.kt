@@ -3,6 +3,7 @@ package space.mosk.tourismore.fragments
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -20,7 +21,6 @@ class PanoramaFragment : Activity(), PanoramaService.SearchListener {
     private var panoramaService: PanoramaService? = null
     private var searchSession: PanoramaService.SearchSession? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-        MapKitFactory.setApiKey(MAPKIT_API_KEY)
         MapKitFactory.initialize(this)
         PlacesFactory.initialize(this)
         setContentView(R.layout.panorama)
@@ -28,6 +28,7 @@ class PanoramaFragment : Activity(), PanoramaService.SearchListener {
         panoramaView = findViewById<View>(R.id.panoview) as PanoramaView
         panoramaService = PlacesFactory.getInstance().createPanoramaService()
         searchSession = panoramaService!!.findNearest(SEARCH_LOCATION, this)
+        findViewById<Button>(R.id.close_pan).setOnClickListener { finishActivity(0) }
     }
 
     override fun onStop() {
@@ -45,7 +46,6 @@ class PanoramaFragment : Activity(), PanoramaService.SearchListener {
 
     override fun onPanoramaSearchResult(p0: String) {
         panoramaView?.getPlayer()?.openPanorama(p0)
-        panoramaView?.getPlayer()?.enableMove()
         panoramaView?.getPlayer()?.enableRotation()
         panoramaView?.getPlayer()?.enableZoom()
         panoramaView?.getPlayer()?.enableMarkers()

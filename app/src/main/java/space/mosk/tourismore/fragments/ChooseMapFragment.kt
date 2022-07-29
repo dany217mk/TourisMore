@@ -72,7 +72,10 @@ class ChooseMapFragment : Fragment() {
         })
 
         goBtn.setOnClickListener{
-
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
+                .replace(R.id.container, RouteFragment())
+                .commit()
         }
 
     }
