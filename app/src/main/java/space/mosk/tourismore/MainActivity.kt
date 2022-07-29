@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yandex.mapkit.MapKitFactory
 import space.mosk.tourismore.*
+import space.mosk.tourismore.fragments.*
 
 class MainActivity : AppCompatActivity(){
 
@@ -54,14 +55,6 @@ class MainActivity : AppCompatActivity(){
             }
         }
         bottomNavigationBar.setOnItemReselectedListener{}
-        /*
-        https://www.meghandev.io/post/android-bottomnavigationview-example-tutorial
-        https://blog.mindorks.com/android-bottom-navigationview-in-kotlin
-        https://medium.com/@jaaveeth.developer/arcore-81528569eb2c
-        1)https://medium.com/make-an-android-ar-augmented-reality-app-for/make-an-ar-augmented-reality-app-for-android-in-2022-48a1711562bb
-        2) https://medium.com/coinmonks/arcore-sceneform-augmented-images-3-android-ar-app-2c0990f65df2
-        3!!!!!!!!!)https://medium.com/@jose01.arteaga/kotlin-arcore-49b7a234f7cf
-         */
     }
     private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()

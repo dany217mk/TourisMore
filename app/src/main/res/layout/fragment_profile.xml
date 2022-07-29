@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".fragments.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -89,7 +89,7 @@
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
+                app:layout_constraintEnd_toStartOf="@+id/followers_btn"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name">
@@ -116,7 +116,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout4"
+                android:id="@+id/followers_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -124,13 +124,13 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
+                app:layout_constraintEnd_toStartOf="@+id/follows_btn"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout3"
                 app:layout_constraintTop_toBottomOf="@+id/name">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/followers_num_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -140,18 +140,18 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/followers_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa_variablefont_wght"
-                    android:text="Подписки"
+                    android:text="Подписчиков"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout5"
+                android:id="@+id/follows_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -160,11 +160,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+                app:layout_constraintStart_toEndOf="@+id/followers_btn"
                 app:layout_constraintTop_toBottomOf="@+id/name">
 
                 <TextView
-                    android:id="@+id/subCount"
+                    android:id="@+id/follows_num_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -174,11 +174,11 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/subText"
+                    android:id="@+id/follows_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/comfortaa_variablefont_wght"
-                    android:text="Подписчиков"
+                    android:text="Подписки"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewsFragment">
+    tools:context=".fragments.MessagesFragment">
 
     <TextView
         android:id="@+id/label_text"
@@ -21,13 +21,26 @@
         android:fontFamily="@font/comfortaa_variablefont_wght"
         tools:ignore="MissingConstraints" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messages_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_text"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp" />
+
+
     <TextView
-        android:id="@+id/emptyTextNews"
+        android:id="@+id/emptyTextMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/comfortaa_variablefont_wght"
         android:text="Сообщений пока-что нет"
         android:textAlignment="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +60,17 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/preload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/preload2"
+        app:layout_constraintBottom_toBottomOf="@+id/messages_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/label_text"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
