@@ -12,8 +12,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import space.mosk.tourismore.FeedAdapter
 import space.mosk.tourismore.R
-import space.mosk.tourismore.adapters.FeedAdapter
 import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 import space.mosk.tourismore.models.FeedPost
 

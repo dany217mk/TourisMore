@@ -30,6 +30,10 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.mapkit.user_location.UserLocationLayer
+import space.mosk.tourismore.adapters.ShareBetweenFragments
+import space.mosk.tourismore.adapters.ValueEventListenerAdapter
+import space.mosk.tourismore.fragments.ProfileFragment
+import space.mosk.tourismore.fragments.RatingFragment
 import space.mosk.tourismore.models.FeedPost
 import space.mosk.tourismore.models.User
 import www.sanju.motiontoast.MotionToast
@@ -152,8 +156,8 @@ class AddPubFragment : Fragment() {
                                                 uid = mAuth.currentUser!!.uid,
                                                 name = mUser.name.toString(),
                                                 surname = mUser.surname.toString(),
-                                                latitude = lat.toString(),
-                                                    longitude = lng.toString(),
+                                                latitude = 60.toString(),
+                                                    longitude = 30.toString(),
                                                     image = imageDownloadUrl.toString(),
                                                 caption = view.findViewById<EditText>(R.id.title_input).text.toString(),
                                                 profileImage = mUser.profileImage.toString()

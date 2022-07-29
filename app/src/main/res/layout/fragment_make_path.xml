@@ -7,10 +7,10 @@
     <com.yandex.mapkit.mapview.MapView
         android:id="@+id/mapview_route"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button_make"
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -18,46 +18,32 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_ripple_continue"
-            android:text="НАЙТИ" />
+            android:text="НАЗАД" />
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="188dp"
-            android:layout_marginTop="265dp"
-            android:layout_marginEnd="188dp"
-            android:src="@drawable/lblackcircle" />
-        <Button
-            android:id="@+id/button_makemark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="209dp"
-            android:layout_marginTop="361dp"
-            android:layout_marginBottom="322dp"
-            android:background="@drawable/btn_ripple_continue"
-            android:text="ДОБАВИТЬ" />
 
-        <Button
-            android:id="@+id/save_path"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="213dp"
-            android:layout_marginEnd="220dp"
-            android:layout_marginBottom="400dp"
-            android:background="@drawable/btn_ripple_continue"
-            android:text="СОХРАНИТЬ" />
     </com.yandex.mapkit.mapview.MapView>
 
+    <Button
+        android:id="@+id/button_makemark"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/btn_ripple_continue"
+        android:text="ДОБАВИТЬ" />
+
+    <Button
+        android:id="@+id/save_path"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="500dp"
+
+        android:layout_toEndOf="@+id/button_makemark"
+        android:background="@drawable/btn_ripple_continue"
+        android:text="СОХРАНИТЬ" />
 </RelativeLayout>

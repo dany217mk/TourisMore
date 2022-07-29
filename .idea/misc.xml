@@ -39,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_pedometer.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/map_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/panorama.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/route_fragment.xml" value="0.35643115942028986" />
       </map>
     </option>
   </component>

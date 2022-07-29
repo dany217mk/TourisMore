@@ -39,6 +39,7 @@ class ListPathsAdapter(private val array: List<Way>, val onViewClick: OnViewClic
         holder.itemView.setOnClickListener{
             onViewClick.onItemClick(position)
         }
+
     }
 
     override fun getItemCount(): Int {

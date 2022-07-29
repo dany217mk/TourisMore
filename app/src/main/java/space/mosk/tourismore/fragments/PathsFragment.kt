@@ -48,7 +48,6 @@ class PathsFragment : Fragment(), OnViewClickListener {
     ): View? {
         val v : View = inflater.inflate(R.layout.fragment_paths, container, false)
         v.findViewById<Button>(R.id.make_path).setOnClickListener {
-            Log.d("ЧЗХ", "ЧЗХ")
             val nextFrag = MakeRouteActivity()
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container, nextFrag, "")

@@ -1,4 +1,4 @@
-package space.mosk.tourismore
+package space.mosk.tourismore.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -33,12 +30,14 @@ import com.yandex.mapkit.transport.masstransit.SectionMetadata
 import com.yandex.mapkit.transport.masstransit.Session
 import com.yandex.mapkit.transport.masstransit.TimeOptions
 import com.yandex.runtime.Error
-import space.mosk.tourismore.adapters.ShareBetweenFragments
-import space.mosk.tourismore.fragments.ProfileFragment
-import space.mosk.tourismore.models.FeedPost
+import space.mosk.tourismore.MapFragment
+import space.mosk.tourismore.MarkerInfo
+import space.mosk.tourismore.R
+import space.mosk.tourismore.Route
+import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 import space.mosk.tourismore.models.User
 
-class MakeRouteActivity : Fragment(), Session.RouteListener  {
+class RouteFragment  : Fragment(), Session.RouteListener  {
     private lateinit var mapView: com.yandex.mapkit.mapview.MapView
     private lateinit var button: Button
     private lateinit var button_save: Button
@@ -74,54 +73,45 @@ class MakeRouteActivity : Fragment(), Session.RouteListener  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("ЧsЗХ", "ЧsЗХ")
+
+        points = ArrayList()
         MapKitFactory.initialize(requireActivity())
-        val v : View = inflater.inflate(R.layout.fragment_make_path, container, false)
-        button = v.findViewById(R.id.button_makemark)
-        button_save = v.findViewById(R.id.save_path)
+        val v : View = inflater.inflate(R.layout.route_fragment, container, false)
         val button_back : Button = v.findViewById(R.id.button_back)
-        val button_save : Button = v.findViewById(R.id.save_path)
         button_back.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
         }
-        mapView = v.findViewById(R.id.mapview_route)
+        mapView = v.findViewById(R.id.mapview_show_route)
         mapView.map.move(
             CameraPosition(Point(53.327300, 50.316413), 16.0f, 0.0f, 0.0f),
             Animation(Animation.Type.SMOOTH, 0f), null
         )
-        button_save.setOnClickListener { mDatabase.child("paths")
-            .push().setValue(
-                points
-            ).addOnCompleteListener{
-                if (it.isSuccessful){
-                    Toast.makeText(requireActivity(), "Ваш маршрут успешно сохранен", Toast.LENGTH_SHORT).show()
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
-                        .replace(R.id.container, MapFragment())
-                        .commit()
+        mDatabase.child("paths").child("-N87WvjUJgCtP2achX4O").addValueEventListener(
+            ValueEventListenerAdapter { dataSnapshot->
+                for (snapshot in dataSnapshot.children) {
+                    Log.d("LATIT", snapshot.child("point").value.toString())
+                    mapView.map.mapObjects.addPlacemark(
+                        Point(
+                            (snapshot.child("point").value as HashMap<String, Double>).get("latitude")!!.toDouble(),
+                            (snapshot.child("point").value as HashMap<String, Double>).get("longitude")!!.toDouble()
+                        )
+                    )
+                    points.add(RequestPoint(Point(
+                        (snapshot.child("point").value as HashMap<String, Double>).get("latitude")!!.toDouble(),
+                        (snapshot.child("point").value as HashMap<String, Double>).get("longitude")!!.toDouble()
+                    ), RequestPointType.WAYPOINT, null))
                 }
-            } }
+
+                })
         mapObjects = mapView!!.map.mapObjects.addCollection()
         val options = TimeOptions()
-
-        points = ArrayList()
         route = Route(ArrayList<MarkerInfo>(0), 0)
-        button.setOnClickListener { make_new_marker() }
 
+        mtRouter = TransportFactory.getInstance()?.createPedestrianRouter()
+        mtRouter?.requestRoutes(points, options, this)
         return v
     }
 
-    private fun make_new_marker() {
-        mapView.map.mapObjects.addPlacemark(mapView.map.cameraPosition.target)
-        route.points.add(MarkerInfo("", mapView.map.cameraPosition.target.latitude, mapView.map.cameraPosition.target.longitude))
-
-        points.add(RequestPoint(mapView.map.cameraPosition.target, RequestPointType.WAYPOINT, null))
-        val options = TimeOptions()
-        if (points.size > 1){
-            mtRouter = TransportFactory.getInstance()?.createPedestrianRouter()
-            mtRouter?.requestRoutes(points, options, this)
-        }
-    }
 
     override fun onMasstransitRoutes(routes: MutableList<com.yandex.mapkit.transport.masstransit.Route>) {
         if (routes.size > 0) {
@@ -158,6 +148,6 @@ class MakeRouteActivity : Fragment(), Session.RouteListener  {
         }
     }
     override fun onMasstransitRoutesError(p0: Error) {
-        TODO("Not yet implemented")
+
     }
 }

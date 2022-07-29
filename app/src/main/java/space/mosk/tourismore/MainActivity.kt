@@ -1,5 +1,7 @@
 package space.mosk.tourismore
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
@@ -11,15 +13,16 @@ import space.mosk.tourismore.fragments.*
 
 class MainActivity : AppCompatActivity(){
 
+    private var initialized = false
     private val MAPKIT_API_KEY = "f727989a-ecd4-4f05-a90d-f923d9179f62"
     private lateinit var bottomNavigationBar : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         MapKitFactory.setApiKey(MAPKIT_API_KEY)
         MapKitFactory.initialize(this)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
         bottomNavigationBar = findViewById(R.id.navigationView)
         val fragment = MapFragment()
         loadFragment(fragment)
@@ -56,11 +59,34 @@ class MainActivity : AppCompatActivity(){
         }
         bottomNavigationBar.setOnItemReselectedListener{}
     }
+
+    fun initialize(apiKey: String, context: Context) {
+        val r : Boolean = getSharedPreferences("mysettings",  Context.MODE_PRIVATE).getBoolean("init", true)
+        if (initialized || r) {
+            return
+        }
+
+        val e  = getSharedPreferences("mysettings", Context.MODE_PRIVATE).edit()
+        e.putBoolean("init", true)
+        e.apply()
+        MapKitFactory.setApiKey(apiKey)
+        MapKitFactory.initialize(context)
+        initialized = true
+    }
+
     private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
         transaction.replace(R.id.container, fragment)
         transaction.commit()
     }
+    override fun onStop() {
+        MapKitFactory.getInstance().onStop()
+        super.onStop()
+    }
 
+    override fun onStart() {
+        super.onStart()
+        MapKitFactory.getInstance().onStart()
+    }
 }

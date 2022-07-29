@@ -23,6 +23,7 @@ import com.yandex.mapkit.user_location.UserLocationLayer
 import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
 import com.yandex.runtime.image.ImageProvider
+import space.mosk.tourismore.fragments.PathsFragment
 
 
 class MapFragment : Fragment(), UserLocationObjectListener {
@@ -59,6 +60,7 @@ class MapFragment : Fragment(), UserLocationObjectListener {
         userLocationLayer!!.isVisible = true
         userLocationLayer!!.isHeadingEnabled = true
         userLocationLayer!!.setObjectListener(this)
+
         return view
     }
     private fun requestLocationPermission() {

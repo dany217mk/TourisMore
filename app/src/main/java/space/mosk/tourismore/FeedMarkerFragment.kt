@@ -43,7 +43,7 @@ class FeedMarkerFragment : Fragment(){
         val bundle : Bundle = Bundle()
         val lng = bundle.getDouble("lng")
         val lat = bundle.getDouble("lat")
-        mapView = view.findViewById(R.id.mapview)
+        mapView = view.findViewById(R.id.mapview_feed)
         mapView?.getMap()?.isRotateGesturesEnabled = false
         mapView?.getMap()?.move(CameraPosition(Point(0.0, 0.0), 14f, 0f, 0f))
         requestLocationPermission()
@@ -54,6 +54,7 @@ class FeedMarkerFragment : Fragment(){
             Animation(Animation.Type.SMOOTH, 5f),
             null
         )
+        mapView!!.map.mapObjects.addPlacemark(Point(lng, lat))
         return view
     }
     private fun requestLocationPermission() {

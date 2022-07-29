@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import space.mosk.tourismore.fragments.NewsFragment
 import space.mosk.tourismore.models.FeedPost
 
 
