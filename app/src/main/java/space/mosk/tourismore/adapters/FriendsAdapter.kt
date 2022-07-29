@@ -4,13 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mosk.tourismore.R
+import space.mosk.tourismore.fragments.OtherUserFragment
 import space.mosk.tourismore.models.User
 
-class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
+class FriendsAdapter(private val listener: Listener, private val requireActivity: FragmentActivity) : RecyclerView.Adapter<FriendsAdapter.ViewHolder>() {
     private var mPositions = mapOf<String, Int>()
     private var mFollows = mapOf<String, Boolean>()
     private var mUsers = listOf<User>()
@@ -45,6 +49,9 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
         holder.view.findViewById<Button>(R.id.unfollow_btn).setOnClickListener {
             listener.unfollow(user.uid!!)
         }
+        holder.view.findViewById<LinearLayout>(R.id.friend_btn).setOnClickListener{
+            loadFragment(OtherUserFragment(user, "friends"))
+        }
         if (mFollows[user.uid] ?: false){
             holder.view.findViewById<Button>(R.id.follow_btn).visibility = View.GONE
             holder.view.findViewById<Button>(R.id.unfollow_btn).visibility = View.VISIBLE
@@ -73,5 +80,12 @@ class FriendsAdapter(private val listener: Listener) : RecyclerView.Adapter<Frie
     fun unfollowed(uid: String) {
         mFollows -= uid
         notifyItemChanged(mPositions[uid]!!)
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        requireActivity.supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
+            .replace(R.id.container, fragment)
+            .commit()
     }
 }

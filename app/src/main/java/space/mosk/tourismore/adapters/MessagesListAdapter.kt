@@ -36,7 +36,15 @@ class MessagesListAdapter(private val requireActivity: FragmentActivity) : Recyc
         mDatabase.child("users").child(lastMessage.user_id.toString()).addValueEventListener(
             ValueEventListenerAdapter{
             val user = it.getValue(User::class.java)
-            holder.view.findViewById<TextView>(R.id.info_text).text = lastMessage.lastMsg
+
+                var s = ""
+                if(lastMessage.lastMsg.length > 26){
+                    s = lastMessage.lastMsg.substring(0, 23)
+                    s += "..."
+                }     else{
+                    s = lastMessage.lastMsg
+                }
+            holder.view.findViewById<TextView>(R.id.info_text).text = s
             holder.view.findViewById<TextView>(R.id.username_text).text = user?.name + " " + user?.surname
             if (user?.profileImage != "No Image"){
                 Glide.with(holder.view).load(user?.profileImage).centerCrop().into(holder.view.findViewById(

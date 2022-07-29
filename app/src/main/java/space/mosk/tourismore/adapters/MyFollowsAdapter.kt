@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mosk.tourismore.R
 import space.mosk.tourismore.fragments.ChatFragment
+import space.mosk.tourismore.fragments.OtherUserFragment
 import space.mosk.tourismore.models.User
 
 class MyFollowsAdapter(private val listener: Listener, private val requireActivity: FragmentActivity) : RecyclerView.Adapter<MyFollowsAdapter.ViewHolder>() {
@@ -46,6 +48,9 @@ class MyFollowsAdapter(private val listener: Listener, private val requireActivi
         }
         holder.view.findViewById<Button>(R.id.chat).setOnClickListener {
             loadFragment(ChatFragment(user))
+        }
+        holder.view.findViewById<LinearLayout>(R.id.friend_btn).setOnClickListener{
+            loadFragment(OtherUserFragment(user, "follows"))
         }
     }
 

@@ -1,5 +1,6 @@
 package space.mosk.tourismore
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ class GridRecyclerView(val imgArray : List<String>) : RecyclerView.Adapter<GridR
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val img : ImageView = itemView.findViewById(R.id.profilePh)
     }
-    private lateinit var images: List<String>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.one_img, parent, false)
         return GridRecyclerView.ViewHolder(itemView)
@@ -42,7 +42,4 @@ class GridRecyclerView(val imgArray : List<String>) : RecyclerView.Adapter<GridR
         return imgArray.size
     }
 
-}
-interface profilePicsClick{
-    fun onClick(pos : Int)
 }

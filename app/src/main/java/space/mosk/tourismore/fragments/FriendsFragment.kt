@@ -59,7 +59,7 @@ class FriendsFragment : Fragment(), FriendsAdapter.Listener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_friends, container, false)
         val uid = mAuth.currentUser!!.uid
-        mAdapter = FriendsAdapter(this)
+        mAdapter = FriendsAdapter(this, requireActivity())
         val friends_recycler = view.findViewById<RecyclerView>(R.id.friends_recycler)
         friends_recycler.adapter = mAdapter
         friends_recycler.layoutManager = LinearLayoutManager(view.context)

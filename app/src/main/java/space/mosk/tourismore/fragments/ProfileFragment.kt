@@ -22,10 +22,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 import space.mosk.tourismore.GridRecyclerView
 import space.mosk.tourismore.activities.AuthActivity
 import space.mosk.tourismore.models.User
-import space.mosk.tourismore.profilePicsClick
 import space.mosk.tourismore.R
 import space.mosk.tourismore.activities.auth
-import space.mosk.tourismore.adapters.ShowImageDialog
 import space.mosk.tourismore.adapters.ValueEventListenerAdapter
 
 private const val ARG_PARAM1 = "param1"
@@ -99,6 +97,8 @@ class ProfileFragment : Fragment() {
 
                 if (user?.profileImage != "No Image"){
                     Glide.with(context!!).load(user?.profileImage).into(profilePic)
+                } else{
+                    Glide.with(view.context).load(R.drawable.profile).fallback(R.drawable.profile).centerCrop().into(profilePic)
                 }
                 view.findViewById<TextView>(R.id.follows_num_text).text = user?.follows?.size.toString()
 

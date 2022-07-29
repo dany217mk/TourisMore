@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -165,6 +166,10 @@ class ChatFragment(private  var user: User) : Fragment() {
                 }
             })
 
+        view.findViewById<LinearLayout>(R.id.friend_btn).setOnClickListener{
+            loadFragment(OtherUserFragment(user, "chat"))
+        }
+
 
         view.findViewById<ImageView>(R.id.sendBtn).setOnClickListener {
             val messageTxt: String = msgBox?.text.toString()
@@ -299,5 +304,12 @@ class ChatFragment(private  var user: User) : Fragment() {
         super.onPause()
         val currentId = FirebaseAuth.getInstance().uid
         mDatabase.child("presence").child(currentId!!).setValue("Offline")
+    }
+
+    private fun loadFragment(fragment: Fragment){
+        requireActivity().supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.animator.slide_left, R.animator.slide_right)
+            .replace(R.id.container, fragment)
+            .commit()
     }
 }
