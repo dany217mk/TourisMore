@@ -4,12 +4,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,8 +44,16 @@ class PathsFragment : Fragment(), OnViewClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_paths, container, false)
+        val v : View = inflater.inflate(R.layout.fragment_paths, container, false)
+        v.findViewById<Button>(R.id.make_path).setOnClickListener {
+            Log.d("ЧЗХ", "ЧЗХ")
+            val nextFrag = MakeRouteActivity()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, nextFrag, "")
+                .addToBackStack(null)
+                .commit()
+        }
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

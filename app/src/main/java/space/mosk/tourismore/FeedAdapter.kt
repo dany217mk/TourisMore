@@ -1,14 +1,17 @@
 package space.mosk.tourismore
 
-import android.util.Log
+
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mosk.tourismore.models.FeedPost
+
 
 class FeedAdapter(private val listener: Listener, private val posts: List<FeedPost>) : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -53,6 +56,16 @@ class FeedAdapter(private val listener: Listener, private val posts: List<FeedPo
             Glide.with(holder.view).load(R.drawable.profile).fallback(R.drawable.profile).centerCrop().into(holder.view.findViewById(R.id.user_photo_image))
         }
         Glide.with(holder.view).load(post.image).centerCrop().into(holder.view.findViewById(R.id.post_image))
+        holder.view.findViewById<ImageView>(R.id.location_img).setOnClickListener {
+            val fragment = FeedMarkerFragment()
+            val bundle : Bundle = Bundle()
+            fragment.arguments = bundle
+            bundle.putDouble("lng", post.longitude.toDouble())
+            bundle.putDouble("lat", post.latitude.toDouble())
+            (holder.view.context as FragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit()
+        }
     }
 
     override fun getItemCount(): Int {

@@ -6,6 +6,27 @@
     <com.yandex.mapkit.places.panorama.PanoramaView
         android:id="@+id/panoview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:id="@+id/close_pan"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="161dp"
+            android:layout_marginEnd="160dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/btn_ripple_add"
+            android:text="ВЫХОД" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="❯"
+
+            android:background="@drawable/btn_ripple_add"/>
+    </com.yandex.mapkit.places.panorama.PanoramaView>
 
 </RelativeLayout>

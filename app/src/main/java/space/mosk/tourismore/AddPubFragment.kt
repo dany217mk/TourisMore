@@ -1,17 +1,25 @@
 package space.mosk.tourismore
 
+import android.Manifest
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
@@ -20,10 +28,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.yandex.mapkit.mapview.MapView
+import com.yandex.mapkit.user_location.UserLocationLayer
 import space.mosk.tourismore.models.FeedPost
 import space.mosk.tourismore.models.User
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,11 +60,15 @@ class AddPubFragment : Fragment() {
 
     var dialog: ProgressDialog?= null
 
+    private val MAPKIT_API_KEY = "f727989a-ecd4-4f05-a90d-f923d9179f62"
+    private var mapView: MapView? = null
+    private var userLocationLayer: UserLocationLayer? = null
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
     private val mStorage: StorageReference = FirebaseStorage.getInstance().reference
     private lateinit var model : ShareBetweenFragments
 
+    lateinit var locationManager: LocationManager
     private lateinit var mUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +100,35 @@ class AddPubFragment : Fragment() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
+        requestLocationPermission()
         startActivityForResult(intent, 45)
+        locationManager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (ActivityCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResult)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+        }
+        var lng : Double = 0.0
+        var lat : Double = 0.0
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0F, object :
+            LocationListener {
+            override fun onLocationChanged(p0: Location) {
+                if (p0 != null) {
+                    lng = p0.longitude
+                    lat = p0.latitude
+                }
+            }})
         view.findViewById<MaterialButton>(R.id.shareBtn).setOnClickListener{
             if (imageUri != null){
                 dialog!!.show()
@@ -109,9 +152,12 @@ class AddPubFragment : Fragment() {
                                                 uid = mAuth.currentUser!!.uid,
                                                 name = mUser.name.toString(),
                                                 surname = mUser.surname.toString(),
-                                                image = imageDownloadUrl.toString(),
+                                                latitude = lat.toString(),
+                                                    longitude = lng.toString(),
+                                                    image = imageDownloadUrl.toString(),
                                                 caption = view.findViewById<EditText>(R.id.title_input).text.toString(),
                                                 profileImage = mUser.profileImage.toString()
+
                                             )
                                             ).addOnCompleteListener{
                                                 if (it.isSuccessful){
@@ -153,6 +199,19 @@ class AddPubFragment : Fragment() {
         }
 
     }
+    private fun requestLocationPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                "android.permission.ACCESS_FINE_LOCATION"
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf("android.permission.ACCESS_FINE_LOCATION"),
+                MapFragment.PERMISSIONS_REQUEST_FINE_LOCATION
+            )
+        }
+    }
 
     private fun loadFragment(fragment: Fragment){
         requireActivity().supportFragmentManager.beginTransaction()
@@ -193,6 +252,5 @@ class AddPubFragment : Fragment() {
             }
         }
     }
-
 
 }

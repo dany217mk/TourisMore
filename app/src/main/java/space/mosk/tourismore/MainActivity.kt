@@ -5,28 +5,33 @@ import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.yandex.mapkit.MapKitFactory
 import space.mosk.tourismore.*
 
 class MainActivity : AppCompatActivity(){
+
+    private val MAPKIT_API_KEY = "f727989a-ecd4-4f05-a90d-f923d9179f62"
     private lateinit var bottomNavigationBar : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MapKitFactory.setApiKey(MAPKIT_API_KEY)
+        MapKitFactory.initialize(this)
         supportActionBar?.hide()
         bottomNavigationBar = findViewById(R.id.navigationView)
-        val fragment = PathsFragment()
+        val fragment = MapFragment()
         loadFragment(fragment)
         bottomNavigationBar.setOnItemSelectedListener {
                 item -> var fragment: Fragment
             when (item.itemId) {
                 R.id.home -> {
                     fragment = ServicesFragment()
-
                     loadFragment(fragment)
                     true
                 }
                 R.id.paths -> {
-                    fragment = PathsFragment()
+                    fragment = MapFragment()
                     loadFragment(fragment)
                     true
                 }
